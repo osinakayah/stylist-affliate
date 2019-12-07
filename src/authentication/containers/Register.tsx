@@ -4,7 +4,6 @@ import {
     MDBRow,
     MDBCol,
     MDBInput,
-    MDBTypography,
 } from "mdbreact";
 import {Link} from "react-router-dom";
 
@@ -22,7 +21,7 @@ export default class Register extends PureComponent {
                         <MDBCol className={'offset-md-1 offset-lg-1 offset-sm-1'} xs={'12'} sm={'10'} md={'10'} lg={'10'}>
                             <div style={{display: 'flex', flexDirection: 'row'}}>
                                 <div style={{ backgroundColor: 'white', padding: '7%', display: 'flex', flexDirection: 'column', flexGrow: 3 }}>
-                                    <MDBTypography tag='h1'>Sign Up</MDBTypography>
+                                    <h1>Sign Up</h1>
                                     <div style={{marginTop: '7%'}}>
                                         <form style={{marginBottom: '3%'}}>
                                             <div className="grey-text">

@@ -1,21 +1,39 @@
 import React, {PureComponent} from 'react'
 import AppDrawer from '../../commons/AppDrawer';
+import {
+    MDBCard,
+    MDBRow,
+    MDBCol,
+    MDBCardImage,
+    MDBCardBody,
+    MDBCardTitle,
+    MDBCardText,
+} from "mdbreact";
+import {withRouter} from "react-router";
 
 
-export default  class Profile extends  PureComponent {
+interface IProps {
+    location: any
+}
+
+interface IState {
+
+}
+
+class Profile extends PureComponent<IProps, IState> {
     render(): React.ReactNode {
+        const {pathname} = this.props.location;
         return (
-            <AppDrawer>
-                <h3>Overview</h3>
+            <AppDrawer activeRoute={pathname}>
+                <div style={{padding: '3%'}}>
+                    <section className="text-center">
 
-                <div className='search-bar'>
-                    <input className='input' type='search' placeholder='Search customers, transactions, settings' />
-                </div>
 
-                <div>
-                    Hi Profile
+                    </section>
                 </div>
             </AppDrawer>
         );
     }
 }
+
+export default withRouter(props => <Profile {...props}/>);

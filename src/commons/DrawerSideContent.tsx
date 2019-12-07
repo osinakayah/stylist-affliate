@@ -2,20 +2,23 @@ import React from "react";
 import Avatar from 'react-avatar';
 
 import './styles/DrawerSideContentStyles.scss'
-const DrawerSideContent: React.FC = () => {
+import {Link} from "react-router-dom";
+
+type DrawerSideContentProps = {
+    activeRoute: string,
+}
+
+const DrawerSideContent: React.FC<DrawerSideContentProps> = ({activeRoute}) => {
 
     return (
         <div className={'side-drawer-container'}>
             <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '30px'}}>
-                <Avatar style={{marginTop: '12em'}} round name="Foo Bar" />
+                <Avatar style={{marginTop: '12em'}} round name="John Doe" />
             </div>
-            <div>
 
-            </div>
             <ul className={'side-menu-list'}>
-                <li><a>Dashboard</a></li>
-                <li><a>Products</a></li>
-                <li><a>Profile</a></li>
+                <li className={activeRoute==='/product'? 'active-link': ''}><Link to={'/product'} href={'/product'}>Products</Link></li>
+                <li className={activeRoute==='/profile'? 'active-link': ''}><Link to={'/profile'} href={'/profile'}>Profile</Link></li>
             </ul>
         </div>
     );

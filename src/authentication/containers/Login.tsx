@@ -4,7 +4,6 @@ import {
     MDBRow,
     MDBCol,
     MDBInput,
-    MDBTypography,
 } from "mdbreact";
 import AppButton from "../../commons/AppButton";
 import { Link } from 'react-router-dom';
@@ -22,7 +21,8 @@ export default class Login extends PureComponent {
                         <MDBCol className={'offset-md-1 offset-lg-1 offset-sm-1'} xs={'12'} sm={'10'} md={'10'} lg={'10'}>
                             <div style={{display: 'flex', flexDirection: 'row'}}>
                                 <div className={'form-container'}>
-                                    <MDBTypography tag='h1'>Sign In</MDBTypography>
+
+                                    <h1>Sign In</h1>
                                     <div style={{marginTop: '7%'}}>
                                         <form style={{marginBottom: '3%'}}>
                                             <div className="grey-text">
