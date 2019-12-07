@@ -6,10 +6,11 @@ import {
     MDBInput,
     MDBTypography,
 } from "mdbreact";
+import {Link} from "react-router-dom";
+
 import AppButton from "../../commons/AppButton";
 import './styles/LoginStyles.scss'
 import Images from '../../assets/themes/Images'
-import {Link} from "react-router-dom";
 
 
 export default class Register extends PureComponent {

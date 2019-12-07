@@ -1,6 +1,8 @@
-import Loader from 'react-loader-spinner';
-import './styles/LoaderStyles.scss';
 import React from 'react';
+import Loader from 'react-loader-spinner';
+
+import './styles/LoaderStyles.scss';
+
 
 const CustomLoader: React.FC = () => {
     return (
