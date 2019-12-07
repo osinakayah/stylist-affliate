@@ -21,7 +21,7 @@ export default class Register extends PureComponent {
                     <MDBRow>
                         <MDBCol className={'offset-md-1 offset-lg-1 offset-sm-1'} xs={'12'} sm={'10'} md={'10'} lg={'10'}>
                             <div style={{display: 'flex', flexDirection: 'row'}}>
-                                <div style={{ backgroundColor: 'white', padding: '7%', display: 'flex', flexDirection: 'column', flexGrow: 3 }}>
+                                <div className={'form-container'}>
                                     <MDBTypography tag='h1'>Sign Up</MDBTypography>
                                     <div style={{marginTop: '7%'}}>
                                         <form style={{marginBottom: '3%'}}>
