@@ -1,0 +1,22 @@
+.loader-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-backdrop.show {
+  opacity: .7;
+}
+
+.modal-loader {
+  background-color: transparent;
+
+  .modal-content {
+    background-color: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
