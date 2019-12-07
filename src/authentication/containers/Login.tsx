@@ -9,7 +9,7 @@ import {
 import AppButton from "../../commons/AppButton";
 import './styles/LoginStyles.scss'
 import Images from '../../assets/themes/Images'
-import { useHistory, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 export default class Login extends PureComponent {

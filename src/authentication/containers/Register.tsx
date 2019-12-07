@@ -27,6 +27,15 @@ export default class Register extends PureComponent {
                                             <div className="grey-text">
                                                 <MDBInput
                                                     size={'lg'}
+                                                    label="Type your Full Name"
+                                                    group
+                                                    type="text"
+                                                    validate
+                                                    error="wrong"
+                                                    success="right"
+                                                />
+                                                <MDBInput
+                                                    size={'lg'}
                                                     label="Type your Email"
                                                     group
                                                     type="text"
