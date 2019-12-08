@@ -53,7 +53,7 @@ class Products extends PureComponent<IProps, IState> {
                     <div className={'products-list-container'}>
                         <section className="text-center">
                             <MDBRow >
-                                <MDBCol lg="4" md="4" sm={'6'} xs={'12'} className={'mt-3'}>
+                                <MDBCol lg="4" md="6" sm={'6'} xs={'12'} className={'mt-3'}>
                                     <MDBCard wide>
                                         <MDBCardImage
                                             cascade
@@ -87,7 +87,7 @@ class Products extends PureComponent<IProps, IState> {
                                         </MDBCardBody>
                                     </MDBCard>
                                 </MDBCol>
-                                <MDBCol lg="4" md="4" sm={'6'} xs={'12'} className={'mt-3'}>
+                                <MDBCol lg="4" md="6" sm={'6'} xs={'12'} className={'mt-3'}>
                                     <MDBCard wide>
                                         <MDBCardImage
                                             cascade
@@ -121,7 +121,7 @@ class Products extends PureComponent<IProps, IState> {
                                         </MDBCardBody>
                                     </MDBCard>
                                 </MDBCol>
-                                <MDBCol lg="4" md="4" sm={'6'} xs={'12'} className={'mt-3'}>
+                                <MDBCol lg="4" md="6" sm={'6'} xs={'12'} className={'mt-3'}>
                                     <MDBCard wide>
                                         <MDBCardImage
                                             cascade
@@ -155,7 +155,7 @@ class Products extends PureComponent<IProps, IState> {
                                         </MDBCardBody>
                                     </MDBCard>
                                 </MDBCol>
-                                <MDBCol lg="4" md="4" sm={'6'} xs={'12'} className={'mt-3'}>
+                                <MDBCol lg="4" md="6" sm={'6'} xs={'12'} className={'mt-3'}>
                                     <MDBCard wide>
                                         <MDBCardImage
                                             cascade
