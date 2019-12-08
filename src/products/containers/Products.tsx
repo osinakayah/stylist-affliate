@@ -33,7 +33,7 @@ class Products extends PureComponent<IProps, IState> {
         super(props);
         this.state = {
             showProductDetailModal: false,
-            showProductDetailQRCode: true
+            showProductDetailQRCode: false
         }
     }
     displayProductDetails = () => {
@@ -76,7 +76,7 @@ class Products extends PureComponent<IProps, IState> {
                                                 Lorem ipsum dolor sit amet, consectetur adipisicing minima
                                                 veniam elit.
                                             </MDBCardText>
-                                            <strong>Reward: 1439$</strong>
+                                            <strong>Reward: <span>&#165;</span> 1,439</strong>
                                             <MDBCardFooter className="px-1">
                                                 <span className="float-left">
                                                   <AppButton outline onClick={this.displayProductDetails} buttonText={'Detail'}/>
@@ -110,7 +110,7 @@ class Products extends PureComponent<IProps, IState> {
                                                 Lorem ipsum dolor sit amet, consectetur adipisicing minima
                                                 veniam elit.
                                             </MDBCardText>
-                                            <strong>Reward: 1439$</strong>
+                                            <strong>Reward: <span>&#165;</span> 1,439</strong>
                                             <MDBCardFooter className="px-1">
                                                 <span className="float-left">
                                                   <AppButton outline onClick={this.displayProductDetails} buttonText={'Detail'}/>
@@ -144,7 +144,7 @@ class Products extends PureComponent<IProps, IState> {
                                                 Lorem ipsum dolor sit amet, consectetur adipisicing minima
                                                 veniam elit.
                                             </MDBCardText>
-                                            <strong>Reward: 1439$</strong>
+                                            <strong>Reward: <span>&#165;</span> 1,439</strong>
                                             <MDBCardFooter className="px-1">
                                                 <span className="float-left">
                                                   <AppButton outline onClick={this.displayProductDetails} buttonText={'Detail'}/>
@@ -157,6 +157,41 @@ class Products extends PureComponent<IProps, IState> {
                                         </MDBCardBody>
                                     </MDBCard>
                                 </MDBCol>
+                                <MDBCol lg="4" md="4" sm={'6'} xs={'12'} className={'mt-3'}>
+                                    <MDBCard wide>
+                                        <MDBCardImage
+                                            cascade
+                                            src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/img (55).jpg"
+                                            top
+                                            alt="sample photo"
+                                        />
+                                        <MDBCardBody cascade className="text-center">
+                                            <a href="#!" className="text-muted">
+                                                <h5>Product Category</h5>
+                                            </a>
+                                            <MDBCardTitle>
+                                                <strong>
+                                                    <a href="#!">Product Name</a>
+                                                </strong>
+                                            </MDBCardTitle>
+                                            <MDBCardText>
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing minima
+                                                veniam elit.
+                                            </MDBCardText>
+                                            <strong>Reward: <span>&#165;</span> 1,439</strong>
+                                            <MDBCardFooter className="px-1">
+                                                <span className="float-left">
+                                                  <AppButton outline onClick={this.displayProductDetails} buttonText={'Detail'}/>
+                                                </span>
+                                                <span className="float-right">
+                                                    <AppButton onClick={this.displayProductQRCode} buttonText={'QR Code'}/>
+                                                </span>
+                                            </MDBCardFooter>
+
+                                        </MDBCardBody>
+                                    </MDBCard>
+                                </MDBCol>
+
 
                             </MDBRow>
                         </section>

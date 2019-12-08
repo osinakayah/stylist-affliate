@@ -7,9 +7,11 @@ import {
 } from "mdbreact";
 import AppButton from "../../commons/AppButton";
 import { Link } from 'react-router-dom';
+import Form  from 'react-bootstrap/Form';
 
 import './styles/LoginStyles.scss'
 import Images from '../../assets/themes/Images'
+
 
 
 export default class Login extends PureComponent {
@@ -24,26 +26,19 @@ export default class Login extends PureComponent {
 
                                     <h1>Sign In</h1>
                                     <div style={{marginTop: '7%'}}>
-                                        <form style={{marginBottom: '3%'}}>
-                                            <div className="grey-text">
-                                                <MDBInput
-                                                    size={'lg'}
-                                                    label="Type your Email"
-                                                    group
-                                                    type="text"
-                                                    validate
-                                                    error="wrong"
-                                                    success="right"
-                                                />
-                                                <MDBInput
-                                                    size={'lg'}
-                                                    label="Type your password"
-                                                    group
-                                                    type="password"
-                                                    validate />
-                                            </div>
+                                        <Form>
+
+                                            <Form.Group>
+                                                <Form.Label>Email address</Form.Label>
+                                                <Form.Control type="email" placeholder="Enter email" />
+                                            </Form.Group>
+                                            <Form.Group >
+                                                <Form.Label>Password</Form.Label>
+                                                <Form.Control type="password" placeholder="Password" />
+                                            </Form.Group>
                                             <AppButton onClick={()=>{}} block buttonText={'Sign In'} />
-                                        </form>
+                                        </Form>
+
 
                                         <Link to={'/auth/signup'} className={'linkStyle'}>Don't have an account? Sign Up</Link>
                                     </div>

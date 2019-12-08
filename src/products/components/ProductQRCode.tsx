@@ -23,7 +23,7 @@ const ProductQRCode: React.FC<ProductQRCodeProps> = ({isOpen, toggleModalFunc}) 
                 <MDBModalHeader>Product Name</MDBModalHeader>
                 <MDBModalBody>
                     <MDBRow>
-                        <MDBCol xs={'12'} sm={'6'} md={'5'}>
+                        <MDBCol xs={'12'} sm={'6'} md={'6'}>
                             <div style={{textAlign: 'center'}}>
                                 <MDBCardImage
                                     top
@@ -42,7 +42,7 @@ const ProductQRCode: React.FC<ProductQRCodeProps> = ({isOpen, toggleModalFunc}) 
 
                             </div>
                         </MDBCol>
-                        <MDBCol xs={'12'} sm={'6'} md={'7'}>
+                        <MDBCol xs={'12'} sm={'6'} md={'6'}>
                             <MDBCardImage
                                 cascade
                                 src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/img (55).jpg"
