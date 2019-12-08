@@ -1,14 +1,5 @@
 import React, {PureComponent} from 'react'
 import AppDrawer from '../../commons/AppDrawer';
-import {
-    MDBCard,
-    MDBRow,
-    MDBCol,
-    MDBCardImage,
-    MDBCardBody,
-    MDBCardTitle,
-    MDBCardText,
-} from "mdbreact";
 import {withRouter} from "react-router";
 
 

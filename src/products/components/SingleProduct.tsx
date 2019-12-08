@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import {
     MDBContainer,
     MDBModal,
@@ -7,7 +7,6 @@ import {
     MDBRow,
     MDBCol, MDBCardImage,
     MDBModalFooter,
-    MDBBtn
 } from 'mdbreact';
 import AppButton from "../../commons/AppButton";
 import './styles/SingleProductStyles.scss';
@@ -56,7 +55,6 @@ const SingleProduct: React.FC<SingleProductProps> = ({isOpen, toggleModalFunc}) 
                                 <MDBCardImage
                                     top
                                     cascade
-                                    className={''}
                                     src="https://chart.apis.google.com/chart?cht=qr&chs=260x260&chl=${productLink}&chld=H|0"
                                     alt="QR Code of Product Link"
                                 />
