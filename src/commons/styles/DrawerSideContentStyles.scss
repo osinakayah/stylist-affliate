@@ -2,18 +2,30 @@
   background-color: #161616;
 }
 
-ul.side-menu-list {
+.side-menu-list {
   margin-top: 100%;
   list-style: none;
   padding: 0;
-  li a {
-    color: #fff!important;
-    font-size: 1.1em;
-    font-weight: bold;
-    width: 100%;
-    padding: 10px 10px 10px 50px;
-    text-decoration: none!important;
-    margin: 1px 0;
+  li {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    a {
+      color: #fff;
+      font-size: 1em;
+      font-weight: bold;
+      width: 100%;
+      padding: 10px 10px 10px 50px !important;
+      text-decoration: none!important;
+
+    }
+  }
+
+}
+
+.active-link {
+  background-color: rgba(245, 172, 65, 0.3);
+  a {
+    color: #ee5535 !important;
   }
 
 }

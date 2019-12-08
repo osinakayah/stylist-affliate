@@ -1,3 +1,15 @@
 .side-drawer-container {
   background-color: #161616;
 }
+
+.drawer-container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.drawer-app-content {
+  flex: auto;
+  overflow: auto;
+}

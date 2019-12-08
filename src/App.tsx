@@ -25,13 +25,13 @@ const App: React.FC = () => {
                 component={route.component} />
         ) : (null);
     });
-    const appRoutes = [...authRoutes, ...protectedRoutes];
+
   return (
       <BrowserRouter>
           <div>
               <Suspense fallback={<CustomLoader/>}>
                   <Switch>
-                      {appRoutes}
+                      {authRoutes.concat(protectedRoutes)}
                   </Switch>
               </Suspense>
           </div>

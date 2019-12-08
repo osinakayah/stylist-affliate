@@ -2,48 +2,52 @@ import React, {PureComponent} from 'react'
 import {
     MDBContainer,
     MDBRow,
-    MDBCol,
-    MDBInput,
-    MDBTypography,
+    MDBCol, MDBIcon,
 } from "mdbreact";
-import AppButton from "../../commons/AppButton";
-import { Link } from 'react-router-dom';
+
+import { Link,  } from 'react-router-dom';
+import Form  from 'react-bootstrap/Form';
 
 import './styles/LoginStyles.scss'
 import Images from '../../assets/themes/Images'
+import AppButton from "../../commons/AppButton";
 
+interface  IProps {
+    history: any
+}
+interface IState {
 
-export default class Login extends PureComponent {
+}
+
+export default class Login extends PureComponent<IProps, IState> {
+    gotoProductsList = () => {
+        this.props.history.push('/product')
+    }
     render(): React.ReactNode {
         return (
-            <div style={{padding: '7%'}}>
+            <div style={{padding: '7%', backgroundColor: '#e2dccc'}}>
                 <MDBContainer>
                     <MDBRow>
                         <MDBCol className={'offset-md-1 offset-lg-1 offset-sm-1'} xs={'12'} sm={'10'} md={'10'} lg={'10'}>
                             <div style={{display: 'flex', flexDirection: 'row'}}>
                                 <div className={'form-container'}>
-                                    <MDBTypography tag='h1'>Sign In</MDBTypography>
+
+                                    <MDBIcon className={'iconStyle'} size={'2x'} icon={'lock'}/>
+                                    <h6 className={'text-center'}>Stylist Login</h6>
+                                    <h3 className={'mt-3 text-center'}>Sign In</h3>
                                     <div style={{marginTop: '7%'}}>
-                                        <form style={{marginBottom: '3%'}}>
-                                            <div className="grey-text">
-                                                <MDBInput
-                                                    size={'lg'}
-                                                    label="Type your Email"
-                                                    group
-                                                    type="text"
-                                                    validate
-                                                    error="wrong"
-                                                    success="right"
-                                                />
-                                                <MDBInput
-                                                    size={'lg'}
-                                                    label="Type your password"
-                                                    group
-                                                    type="password"
-                                                    validate />
-                                            </div>
-                                            <AppButton block buttonText={'Sign In'} />
-                                        </form>
+                                        <Form className={'mb-3'}>
+
+                                            <Form.Group>
+                                                <Form.Label>Email address</Form.Label>
+                                                <Form.Control type="email" placeholder="Enter email" />
+                                            </Form.Group>
+                                            <Form.Group >
+                                                <Form.Label>Password</Form.Label>
+                                                <Form.Control type="password" placeholder="Password" />
+                                            </Form.Group>
+                                            <AppButton onClick={this.gotoProductsList} block buttonText={'Sign In'} />
+                                        </Form>
 
                                         <Link to={'/auth/signup'} className={'linkStyle'}>Don't have an account? Sign Up</Link>
                                     </div>
