@@ -50,7 +50,7 @@ export default class Register extends PureComponent {
                                                     type="password"
                                                     validate />
                                             </div>
-                                            <AppButton block buttonText={'Sign In'} />
+                                            <AppButton onClick={()=>{}} block buttonText={'Sign In'} />
                                         </form>
 
 

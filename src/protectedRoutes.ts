@@ -4,7 +4,6 @@ const Profile = lazy(() => import('./profile/containers/Profile'));
 
 
 const routes = [
-    { path: '/', exact: true, name: 'Products', component: Products },
     { path: '/product', exact: true, name: 'Products', component: Products },
     { path: '/profile', exact: true, name: 'Profile', component: Profile },
 ];

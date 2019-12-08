@@ -42,7 +42,7 @@ export default class Login extends PureComponent {
                                                     type="password"
                                                     validate />
                                             </div>
-                                            <AppButton block buttonText={'Sign In'} />
+                                            <AppButton onClick={()=>{}} block buttonText={'Sign In'} />
                                         </form>
 
                                         <Link to={'/auth/signup'} className={'linkStyle'}>Don't have an account? Sign Up</Link>

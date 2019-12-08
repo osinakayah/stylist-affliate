@@ -1,4 +1,4 @@
-import React from "react";
+import React, {SyntheticEvent} from "react";
 import {MDBBtn} from "mdbreact";
 
 import './styles/AppButtonStyle.scss'
@@ -7,12 +7,13 @@ import './styles/AppButtonStyle.scss'
 type AppButtonProps = {
     outline?: boolean,
     buttonText: string
-    block?: boolean
+    block?: boolean,
+    onClick: (event: SyntheticEvent<HTMLButtonElement>) => void;
 }
 
-const AppButton: React.FC<AppButtonProps> = ({outline, buttonText, block}) => {
+const AppButton: React.FC<AppButtonProps> = ({outline, buttonText, block, onClick}) => {
     return (
-        <MDBBtn block={block} outline={outline} className={'app-button'}>
+        <MDBBtn size={'sm'} onClick={onClick} block={block} outline={outline} className={'app-button'}>
             {buttonText}
         </MDBBtn>
     );

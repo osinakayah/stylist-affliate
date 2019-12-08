@@ -1,16 +1,22 @@
 import React, {PureComponent} from 'react';
-import Drawer, {DrawerAppContent, DrawerHeader, DrawerTitle} from '@material/react-drawer';
 import "@material/react-drawer/dist/drawer.css";
-
-import DrawerSideContent from './DrawerSideContent'
 import './styles/AppDrawerStyless.scss'
+import {
+    MDBCollapse,
+    MDBFormInline, MDBNavbar,
+    MDBNavbarBrand,
+    MDBNavbarNav,
+    MDBNavbarToggler,
+    MDBNavItem,
+    MDBNavLink
+} from "mdbreact";
 
 interface IProps {
     activeRoute: string
 }
 
 interface IState {
-    open: boolean;
+    showNavBar: boolean
 }
 
 
@@ -19,26 +25,46 @@ export default class AppDrawer extends PureComponent<IProps, IState > {
     constructor(props: any){
         super(props);
         this.state = {
-            open: true
+            showNavBar: false
         }
+    }
+    toggleCollapse = () => {
+        this.setState({ showNavBar: !this.state.showNavBar });
     }
 
 
     render() {
         return (
             <div>
-                <Drawer
-                    className={'side-drawer-container '}
-                    dismissible
-                    open={this.state.open}
-                >
-                    <DrawerSideContent
-                        activeRoute={this.props.activeRoute}
-                    />
-                </Drawer>
-                <DrawerAppContent>
-                    {this.props.children}
-                </DrawerAppContent>
+                <MDBNavbar color="indigo" dark expand="md">
+                    <MDBNavbarBrand>
+                        <strong className="white-text">Stylists</strong>
+                    </MDBNavbarBrand>
+                    <MDBNavbarToggler onClick={this.toggleCollapse} />
+                    <MDBCollapse id="navbarCollapse3" isOpen={this.state.showNavBar} navbar>
+                        <MDBNavbarNav left>
+                            <MDBNavItem active={this.props.activeRoute=== '/product'}>
+                                <MDBNavLink to="/product">Products</MDBNavLink>
+                            </MDBNavItem>
+                            <MDBNavItem active={this.props.activeRoute=== '/sales'}>
+                                <MDBNavLink to="#!">Sales</MDBNavLink>
+                            </MDBNavItem>
+                            <MDBNavItem active={this.props.activeRoute=== '/profile'}>
+                                <MDBNavLink to="/profile">Profile</MDBNavLink>
+                            </MDBNavItem>
+                        </MDBNavbarNav>
+                        <MDBNavbarNav right>
+                            <MDBNavItem>
+                                <MDBFormInline waves>
+                                    <div className="md-form my-0">
+                                        <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
+                                    </div>
+                                </MDBFormInline>
+                            </MDBNavItem>
+                        </MDBNavbarNav>
+                    </MDBCollapse>
+                </MDBNavbar>
+                {this.props.children}
             </div>
         );
     }
