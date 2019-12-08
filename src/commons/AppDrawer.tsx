@@ -46,9 +46,6 @@ export default class AppDrawer extends PureComponent<IProps, IState > {
                             <MDBNavItem active={this.props.activeRoute=== '/product'}>
                                 <MDBNavLink to="/product">Products</MDBNavLink>
                             </MDBNavItem>
-                            <MDBNavItem active={this.props.activeRoute=== '/sales'}>
-                                <MDBNavLink to="#!">Sales</MDBNavLink>
-                            </MDBNavItem>
                             <MDBNavItem active={this.props.activeRoute=== '/profile'}>
                                 <MDBNavLink to="/profile">Profile</MDBNavLink>
                             </MDBNavItem>

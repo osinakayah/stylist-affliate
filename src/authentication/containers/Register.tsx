@@ -15,7 +15,7 @@ import Images from '../../assets/themes/Images'
 export default class Register extends PureComponent {
     render(): React.ReactNode {
         return (
-            <div style={{padding: '7%'}}>
+            <div style={{padding: '7%', backgroundColor: '#e2dccc'}}>
                 <MDBContainer>
                     <MDBRow>
                         <MDBCol className={'offset-md-1 offset-lg-1 offset-sm-1'} xs={'12'} sm={'10'} md={'10'} lg={'10'}>
@@ -43,6 +43,7 @@ export default class Register extends PureComponent {
                                                     error="wrong"
                                                     success="right"
                                                 />
+
                                                 <MDBInput
                                                     size={'lg'}
                                                     label="Type your password"
