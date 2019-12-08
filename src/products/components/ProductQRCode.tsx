@@ -12,7 +12,7 @@ import AppButton from "../../commons/AppButton";
 import './styles/SingleProductStyles.scss';
 
 
-type ProductQRCodeProps = {
+interface ProductQRCodeProps {
     isOpen: boolean;
     toggleModalFunc: ()=>void
 }

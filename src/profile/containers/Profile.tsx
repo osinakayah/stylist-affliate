@@ -1,7 +1,6 @@
 import React, {PureComponent} from 'react'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import {withRouter} from "react-router";
 import Avatar from 'react-avatar';
 import {
     MDBRow,
@@ -186,4 +185,4 @@ class Profile extends PureComponent<IProps, IState> {
     }
 }
 
-export default withRouter(props => <Profile {...props}/>);
+export default Profile;

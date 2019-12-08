@@ -1,5 +1,4 @@
 import React, {PureComponent} from 'react'
-import {withRouter} from 'react-router-dom';
 import {
     MDBCard,
     MDBRow,
@@ -10,7 +9,6 @@ import {
     MDBContainer,
     MDBCardText,
     MDBCardFooter,
-    MDBTooltip,
 } from "mdbreact";
 import AppDrawer from '../../commons/AppDrawer';
 import AppButton from '../../commons/AppButton'
@@ -50,7 +48,7 @@ class Products extends PureComponent<IProps, IState> {
         return (
             <AppDrawer activeRoute={pathname}>
                 <MDBContainer fluid>
-                    <ProductDetail toggleModalFunc={this.displayProductDetails} isOpen={this.state.showProductDetailModal}/>
+                    <ProductDetail showQRCode={this.displayProductQRCode} toggleModalFunc={this.displayProductDetails} isOpen={this.state.showProductDetailModal}/>
                     <ProductQRCode toggleModalFunc={this.displayProductQRCode} isOpen={this.state.showProductDetailQRCode}/>
                     <div className={'products-list-container'}>
                         <section className="text-center">
@@ -203,4 +201,4 @@ class Products extends PureComponent<IProps, IState> {
     }
 }
 
-export default withRouter(props => <Products {...props}/>);
+export default Products;

@@ -2,19 +2,27 @@ import React, {PureComponent} from 'react'
 import {
     MDBContainer,
     MDBRow,
-    MDBCol,
-    MDBInput,
+    MDBCol, MDBIcon,
 } from "mdbreact";
-import AppButton from "../../commons/AppButton";
-import { Link } from 'react-router-dom';
+
+import { Link,  } from 'react-router-dom';
 import Form  from 'react-bootstrap/Form';
 
 import './styles/LoginStyles.scss'
 import Images from '../../assets/themes/Images'
+import AppButton from "../../commons/AppButton";
 
+interface  IProps {
+    history: any
+}
+interface IState {
 
+}
 
-export default class Login extends PureComponent {
+export default class Login extends PureComponent<IProps, IState> {
+    gotoProductsList = () => {
+        this.props.history.push('/product')
+    }
     render(): React.ReactNode {
         return (
             <div style={{padding: '7%', backgroundColor: '#e2dccc'}}>
@@ -24,9 +32,11 @@ export default class Login extends PureComponent {
                             <div style={{display: 'flex', flexDirection: 'row'}}>
                                 <div className={'form-container'}>
 
-                                    <h1>Sign In</h1>
+                                    <MDBIcon className={'iconStyle'} size={'2x'} icon={'lock'}/>
+                                    <h6 className={'text-center'}>Stylist Login</h6>
+                                    <h3 className={'mt-3 text-center'}>Sign In</h3>
                                     <div style={{marginTop: '7%'}}>
-                                        <Form>
+                                        <Form className={'mb-3'}>
 
                                             <Form.Group>
                                                 <Form.Label>Email address</Form.Label>
@@ -36,9 +46,8 @@ export default class Login extends PureComponent {
                                                 <Form.Label>Password</Form.Label>
                                                 <Form.Control type="password" placeholder="Password" />
                                             </Form.Group>
-                                            <AppButton onClick={()=>{}} block buttonText={'Sign In'} />
+                                            <AppButton onClick={this.gotoProductsList} block buttonText={'Sign In'} />
                                         </Form>
-
 
                                         <Link to={'/auth/signup'} className={'linkStyle'}>Don't have an account? Sign Up</Link>
                                     </div>

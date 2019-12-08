@@ -12,11 +12,12 @@ import AppButton from "../../commons/AppButton";
 import './styles/SingleProductStyles.scss';
 
 
-type ProductDetailProps = {
+interface ProductDetailProps {
     isOpen: boolean;
-    toggleModalFunc: ()=>void
+    toggleModalFunc: ()=>void,
+    showQRCode: ()=>void,
 }
-const ProductDetail: React.FC<ProductDetailProps> = ({isOpen, toggleModalFunc}) => {
+const ProductDetail: React.FC<ProductDetailProps> = ({isOpen, toggleModalFunc, showQRCode}) => {
     return (
         <MDBContainer>
             <MDBModal isOpen={isOpen} size={'lg'}>
@@ -46,7 +47,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({isOpen, toggleModalFunc}) 
                               <strong>Price: 1439$</strong>
                             </span>
                             <span className="float-right">
-                                <AppButton buttonText={'QR Code'} onClick={()=>{}} />
+                                <AppButton buttonText={'QR Code'} onClick={showQRCode} />
                             </span>
                         </MDBCol>
                     </MDBRow>

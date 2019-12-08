@@ -4,7 +4,7 @@ import Avatar from 'react-avatar';
 import './styles/DrawerSideContentStyles.scss'
 import {Link} from "react-router-dom";
 
-type DrawerSideContentProps = {
+interface DrawerSideContentProps {
     activeRoute: string,
 }
 
