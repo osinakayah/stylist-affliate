@@ -8,6 +8,7 @@ import {
     MDBCol, MDBCardImage,
     MDBModalFooter,
 } from 'mdbreact';
+import QRCode from 'qrcode.react';
 import AppButton from "../commons/AppButton";
 import './styles/SingleProductStyles.scss';
 
@@ -25,12 +26,7 @@ const ProductQRCode: React.FC<ProductQRCodeProps> = ({isOpen, toggleModalFunc}) 
                     <MDBRow>
                         <MDBCol xs={'12'} sm={'12'} md={'12'}>
                             <div style={{textAlign: 'center'}}>
-                                <MDBCardImage
-                                    top
-                                    cascade
-                                    src={"https://chart.apis.google.com/chart?cht=qr&chs=225x225&chl=${productLink}&chld=H|0"}
-                                    alt={"QR Code of Product Link"}
-                                />
+                                <QRCode includeMargin level={'H'} size={300} value="http://stylistproduct/productId" />
                                 <div>
                                     <AppButton onClick={()=>{}} block buttonText={'Email'}/>
                                 </div>
