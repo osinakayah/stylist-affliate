@@ -10,7 +10,6 @@ import {Link} from "react-router-dom";
 
 import AppButton from "../../commons/AppButton";
 import './styles/LoginStyles.scss'
-import Images from '../../assets/themes/Images'
 
 interface  IProps {
     history: any
@@ -29,7 +28,7 @@ export default class Register extends PureComponent<IProps, IState> {
             <div style={{padding: '7%'}}>
                 <MDBContainer>
                     <MDBRow>
-                        <MDBCol className={'offset-md-1 offset-lg-1 offset-sm-1'} xs={'12'} sm={'10'} md={'10'} lg={'10'}>
+                        <MDBCol className={'offset-md-3 offset-lg-4 offset-sm-1'} xs={'12'} sm={'10'} md={'6'} lg={'4'}>
                             <div style={{display: 'flex', flexDirection: 'row'}}>
                                 <div className={'form-container'} style={{ backgroundColor: 'white', padding: '7%', display: 'flex', flexDirection: 'column', flexGrow: 3 }}>
 
@@ -84,9 +83,6 @@ export default class Register extends PureComponent<IProps, IState> {
                                         <Link to={'/auth/signin'} className={'linkStyle'}>Already have an account? Sign In</Link>
                                     </div>
 
-                                </div>
-                                <div  className={'d-none d-lg-block'}>
-                                    <img alt={'Register Banner'}  src={Images.loginSideImage} style={{ height: '100%'}}/>
                                 </div>
                             </div>
 

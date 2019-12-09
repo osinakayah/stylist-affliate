@@ -9,7 +9,6 @@ import { Link,  } from 'react-router-dom';
 import Form  from 'react-bootstrap/Form';
 
 import './styles/LoginStyles.scss'
-import Images from '../../assets/themes/Images'
 import AppButton from "../../commons/AppButton";
 
 interface  IProps {
@@ -28,7 +27,7 @@ export default class Login extends PureComponent<IProps, IState> {
             <div style={{padding: '7%', backgroundColor: '#e2dccc'}}>
                 <MDBContainer>
                     <MDBRow>
-                        <MDBCol className={'offset-md-1 offset-lg-1 offset-sm-1'} xs={'12'} sm={'10'} md={'10'} lg={'10'}>
+                        <MDBCol className={'offset-md-3 offset-lg-4 offset-sm-1'} xs={'12'} sm={'10'} md={'6'} lg={'4'}>
                             <div style={{display: 'flex', flexDirection: 'row'}}>
                                 <div className={'form-container'}>
 
@@ -52,9 +51,6 @@ export default class Login extends PureComponent<IProps, IState> {
                                         <Link to={'/auth/signup'} className={'linkStyle'}>Don't have an account? Sign Up</Link>
                                     </div>
 
-                                </div>
-                                <div  className={'d-none d-lg-block'}>
-                                    <img alt={'Login Banner'} src={Images.loginSideImage} style={{ height: '100%'}}/>
                                 </div>
                             </div>
 
