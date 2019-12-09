@@ -9,7 +9,6 @@ import { Link,  } from 'react-router-dom';
 import Form  from 'react-bootstrap/Form';
 
 import './styles/LoginStyles.scss'
-import Images from '../../assets/themes/Images'
 import AppButton from "../../commons/AppButton";
 
 interface  IProps {
@@ -52,9 +51,6 @@ export default class Login extends PureComponent<IProps, IState> {
                                         <Link to={'/auth/signup'} className={'linkStyle'}>Don't have an account? Sign Up</Link>
                                     </div>
 
-                                </div>
-                                <div  className={'d-none d-lg-block'}>
-                                    <img alt={'Login Banner'} src={Images.loginSideImage} style={{ height: '100%'}}/>
                                 </div>
                             </div>
 

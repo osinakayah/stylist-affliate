@@ -10,7 +10,6 @@ import {Link} from "react-router-dom";
 
 import AppButton from "../../commons/AppButton";
 import './styles/LoginStyles.scss'
-import Images from '../../assets/themes/Images'
 
 interface  IProps {
     history: any
@@ -84,9 +83,6 @@ export default class Register extends PureComponent<IProps, IState> {
                                         <Link to={'/auth/signin'} className={'linkStyle'}>Already have an account? Sign In</Link>
                                     </div>
 
-                                </div>
-                                <div  className={'d-none d-lg-block'}>
-                                    <img alt={'Register Banner'}  src={Images.loginSideImage} style={{ height: '100%'}}/>
                                 </div>
                             </div>
 

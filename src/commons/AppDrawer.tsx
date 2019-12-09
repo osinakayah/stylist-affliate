@@ -36,7 +36,7 @@ export default class AppDrawer extends PureComponent<IProps, IState > {
     render() {
         return (
             <div>
-                <MDBNavbar color="indigo" dark expand="md">
+                <MDBNavbar color="default-color" dark expand="md">
                     <MDBNavbarBrand>
                         <strong className="white-text">Stylists</strong>
                     </MDBNavbarBrand>
