@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import routes from './authRoutes'
 import pRoutes from './protectedRoutes'
-import CustomLoader from './commons/CustomLoader';
+import CustomLoader from './components/commons/CustomLoader';
 
 
 const App: React.FC = () => {

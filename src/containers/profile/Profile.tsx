@@ -16,7 +16,7 @@ import {
 } from "mdbreact";
 
 
-import AppDrawer from '../../commons/AppDrawer';
+import AppDrawer from '../../components/commons/AppDrawer';
 
 
 

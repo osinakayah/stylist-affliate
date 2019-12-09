@@ -10,10 +10,10 @@ import {
     MDBCardText,
     MDBCardFooter,
 } from "mdbreact";
-import AppDrawer from '../../commons/AppDrawer';
-import AppButton from '../../commons/AppButton'
-import ProductDetail from '../components/ProductDetail'
-import ProductQRCode from '../components/ProductQRCode'
+import AppDrawer from '../../components/commons/AppDrawer';
+import AppButton from '../../components/commons/AppButton'
+import ProductDetail from '../../components/products/ProductDetail'
+import ProductQRCode from '../../components/products/ProductQRCode'
 
 interface IProps {
     location: any
@@ -93,7 +93,7 @@ class Products extends PureComponent<IProps, IState> {
                                             cascade
                                             src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/img (55).jpg"
                                             top
-                                            alt="sample photo"
+                                            alt="Product"
                                         />
                                         <MDBCardBody cascade className="text-center">
                                             <a href="#!" className="text-muted">

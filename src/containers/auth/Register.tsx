@@ -8,7 +8,7 @@ import {
 import Form  from 'react-bootstrap/Form';
 import {Link} from "react-router-dom";
 
-import AppButton from "../../commons/AppButton";
+import AppButton from "../../components/commons/AppButton";
 import './styles/LoginStyles.scss'
 
 interface  IProps {

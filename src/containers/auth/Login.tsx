@@ -9,7 +9,7 @@ import { Link,  } from 'react-router-dom';
 import Form  from 'react-bootstrap/Form';
 
 import './styles/LoginStyles.scss'
-import AppButton from "../../commons/AppButton";
+import AppButton from "../../components/commons/AppButton";
 
 interface  IProps {
     history: any
