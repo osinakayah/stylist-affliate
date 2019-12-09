@@ -22,7 +22,7 @@ const SingleProductList: React.FC<SingleProductGridProps>  = ({productName, disp
                     <div style={{display: 'flex', flexDirection: 'column'}}>
                         <h6 className={'mt-3 ml-3 text-left'}>{productName}</h6>
                         <strong className={'ml-3 text-left'}>Reward: <span>&#165;</span> 1,439</strong>
-                        <div className={"px-1 mt-0 ml-7"}>
+                        <div className={"px-1 mt-3 ml-7"}>
                             <span className="float-left">
                               <AppButton outline onClick={displayProductDetails} buttonText={'Detail'}/>
                             </span>
