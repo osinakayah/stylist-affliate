@@ -1,19 +1,13 @@
 import React, {PureComponent} from 'react'
 import {
-    MDBCard,
     MDBRow,
-    MDBCol,
-    MDBCardImage,
-    MDBCardBody,
-    MDBCardTitle,
     MDBContainer,
-    MDBCardText,
-    MDBCardFooter,
 } from "mdbreact";
 import AppDrawer from '../../components/commons/AppDrawer';
-import AppButton from '../../components/commons/AppButton'
 import ProductDetail from '../../components/products/ProductDetail'
 import ProductQRCode from '../../components/products/ProductQRCode'
+import SingleProductGrid from '../../components/products/SingleProductGrid'
+import SingleProductList from '../../components/products/SingleProductList'
 
 interface IProps {
     location: any
@@ -53,144 +47,10 @@ class Products extends PureComponent<IProps, IState> {
                     <div className={'products-list-container'}>
                         <section className="text-center">
                             <MDBRow >
-                                <MDBCol lg="4" md="6" sm={'6'} xs={'12'} className={'mt-3'}>
-                                    <MDBCard wide>
-                                        <MDBCardImage
-                                            cascade
-                                            src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/img (55).jpg"
-                                            top
-                                            alt="sample photo"
-                                        />
-                                        <MDBCardBody cascade className="text-center">
-                                            <a href="#!" className="text-muted">
-                                                <h5>Product Category</h5>
-                                            </a>
-                                            <MDBCardTitle>
-                                                <strong>
-                                                    <a href="#!">Product Name</a>
-                                                </strong>
-                                            </MDBCardTitle>
-                                            <MDBCardText>
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing minima
-                                                veniam elit.
-                                            </MDBCardText>
-                                            <strong>Reward: <span>&#165;</span> 1,439</strong>
-                                            <MDBCardFooter className="px-1">
-                                                <span className="float-left">
-                                                  <AppButton outline onClick={this.displayProductDetails} buttonText={'Detail'}/>
-                                                </span>
-                                                <span className="float-right">
-                                                    <AppButton onClick={this.displayProductQRCode} buttonText={'QR Code'}/>
-                                                </span>
-                                            </MDBCardFooter>
-
-                                        </MDBCardBody>
-                                    </MDBCard>
-                                </MDBCol>
-                                <MDBCol lg="4" md="6" sm={'6'} xs={'12'} className={'mt-3'}>
-                                    <MDBCard wide>
-                                        <MDBCardImage
-                                            cascade
-                                            src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/img (55).jpg"
-                                            top
-                                            alt="Product"
-                                        />
-                                        <MDBCardBody cascade className="text-center">
-                                            <a href="#!" className="text-muted">
-                                                <h5>Product Category</h5>
-                                            </a>
-                                            <MDBCardTitle>
-                                                <strong>
-                                                    <a href="#!">Product Name</a>
-                                                </strong>
-                                            </MDBCardTitle>
-                                            <MDBCardText>
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing minima
-                                                veniam elit.
-                                            </MDBCardText>
-                                            <strong>Reward: <span>&#165;</span> 1,439</strong>
-                                            <MDBCardFooter className="px-1">
-                                                <span className="float-left">
-                                                  <AppButton outline onClick={this.displayProductDetails} buttonText={'Detail'}/>
-                                                </span>
-                                                <span className="float-right">
-                                                    <AppButton onClick={this.displayProductQRCode} buttonText={'QR Code'}/>
-                                                </span>
-                                            </MDBCardFooter>
-
-                                        </MDBCardBody>
-                                    </MDBCard>
-                                </MDBCol>
-                                <MDBCol lg="4" md="6" sm={'6'} xs={'12'} className={'mt-3'}>
-                                    <MDBCard wide>
-                                        <MDBCardImage
-                                            cascade
-                                            src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/img (55).jpg"
-                                            top
-                                            alt="sample photo"
-                                        />
-                                        <MDBCardBody cascade className="text-center">
-                                            <a href="#!" className="text-muted">
-                                                <h5>Product Category</h5>
-                                            </a>
-                                            <MDBCardTitle>
-                                                <strong>
-                                                    <a href="#!">Product Name</a>
-                                                </strong>
-                                            </MDBCardTitle>
-                                            <MDBCardText>
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing minima
-                                                veniam elit.
-                                            </MDBCardText>
-                                            <strong>Reward: <span>&#165;</span> 1,439</strong>
-                                            <MDBCardFooter className="px-1">
-                                                <span className="float-left">
-                                                  <AppButton outline onClick={this.displayProductDetails} buttonText={'Detail'}/>
-                                                </span>
-                                                <span className="float-right">
-                                                    <AppButton onClick={this.displayProductQRCode} buttonText={'QR Code'}/>
-                                                </span>
-                                            </MDBCardFooter>
-
-                                        </MDBCardBody>
-                                    </MDBCard>
-                                </MDBCol>
-                                <MDBCol lg="4" md="6" sm={'6'} xs={'12'} className={'mt-3'}>
-                                    <MDBCard wide>
-                                        <MDBCardImage
-                                            cascade
-                                            src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/img (55).jpg"
-                                            top
-                                            alt="sample photo"
-                                        />
-                                        <MDBCardBody cascade className="text-center">
-                                            <a href="#!" className="text-muted">
-                                                <h5>Product Category</h5>
-                                            </a>
-                                            <MDBCardTitle>
-                                                <strong>
-                                                    <a href="#!">Product Name</a>
-                                                </strong>
-                                            </MDBCardTitle>
-                                            <MDBCardText>
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing minima
-                                                veniam elit.
-                                            </MDBCardText>
-                                            <strong>Reward: <span>&#165;</span> 1,439</strong>
-                                            <MDBCardFooter className="px-1">
-                                                <span className="float-left">
-                                                  <AppButton outline onClick={this.displayProductDetails} buttonText={'Detail'}/>
-                                                </span>
-                                                <span className="float-right">
-                                                    <AppButton onClick={this.displayProductQRCode} buttonText={'QR Code'}/>
-                                                </span>
-                                            </MDBCardFooter>
-
-                                        </MDBCardBody>
-                                    </MDBCard>
-                                </MDBCol>
-
-
+                                <SingleProductList productName={'Product Name'} displayProductDetails={this.displayProductDetails} displayProductQRCode={this.displayProductQRCode} />
+                                <SingleProductList productName={'Product Name'} displayProductDetails={this.displayProductDetails} displayProductQRCode={this.displayProductQRCode} />
+                                <SingleProductList productName={'Product Name'} displayProductDetails={this.displayProductDetails} displayProductQRCode={this.displayProductQRCode} />
+                                <SingleProductList productName={'Product Name'} displayProductDetails={this.displayProductDetails} displayProductQRCode={this.displayProductQRCode} />
                             </MDBRow>
                         </section>
                     </div>
