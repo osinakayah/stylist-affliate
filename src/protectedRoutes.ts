@@ -1,6 +1,6 @@
 import {lazy} from 'react';
-const Products = lazy(() => import('./products/containers/Products'));
-const Profile = lazy(() => import('./profile/containers/Profile'));
+const Products = lazy(() => import('./containers/products/Products'));
+const Profile = lazy(() => import('./containers/profile/Profile'));
 
 
 const routes = [
