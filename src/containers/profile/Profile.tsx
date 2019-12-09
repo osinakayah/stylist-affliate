@@ -113,7 +113,7 @@ class Profile extends PureComponent<IProps, IState> {
         };
         return (
             <AppDrawer activeRoute={pathname}>
-                <MDBContainer>
+                <MDBContainer style={{backgroundColor: '#fff'}}>
                     <MDBRow>
                         <MDBCol className={'offset-md-5  offset-lg-5 offset-sm-1 mb-lg-0 mb-5 text-center'}  xs={'12'} lg="2" md="2" >
                             <Avatar style={{marginTop: '12%',}} round name="Chinomso Nwachukwu" />

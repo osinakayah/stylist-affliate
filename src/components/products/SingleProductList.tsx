@@ -1,5 +1,5 @@
 import React from 'react';
-import {MDBCard, MDBCardBody, MDBCardFooter, MDBCardImage, MDBCardText, MDBCardTitle, MDBCol} from "mdbreact";
+import {MDBCard, MDBCol} from "mdbreact";
 import AppButton from "../../components/commons/AppButton";
 
 interface SingleProductGridProps {
