@@ -4,23 +4,40 @@ import {
     MDBRow,
     MDBCol, MDBIcon,
 } from "mdbreact";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Link,  } from 'react-router-dom';
 import Form  from 'react-bootstrap/Form';
 
 import './styles/LoginStyles.scss'
 import AppButton from "../../components/commons/AppButton";
+import {AuthService} from "../../services/auth.service";
 
 interface  IProps {
     history: any
 }
 interface IState {
-
+    email: string,
+    password: string,
 }
 
 export default class Login extends PureComponent<IProps, IState> {
-    gotoProductsList = () => {
+    _attemptLogin = async () => {
+        const response: string = await AuthService.userAuth(this.state);
+        if (response.length > 0){
+            toast(response);
+        }
+        else {
+            this._gotoProductsList();
+        }
+    }
+    _gotoProductsList = () => {
         this.props.history.push('/product')
+    }
+    _handleChange = (key: string, value: string) => {
+        // @ts-ignore
+        this.setState({[key]: value})
+
     }
     render(): React.ReactNode {
         return (
@@ -39,13 +56,13 @@ export default class Login extends PureComponent<IProps, IState> {
 
                                             <Form.Group>
                                                 <Form.Label>Email address</Form.Label>
-                                                <Form.Control type="email" placeholder="Enter email" />
+                                                <Form.Control onChange={(event: any) => this._handleChange('email', event.target.value)} type="email" placeholder="Enter email" />
                                             </Form.Group>
                                             <Form.Group >
                                                 <Form.Label>Password</Form.Label>
-                                                <Form.Control type="password" placeholder="Password" />
+                                                <Form.Control onChange={(event: any) => this._handleChange('password', event.target.value)} type="password" placeholder="Password" />
                                             </Form.Group>
-                                            <AppButton onClick={this.gotoProductsList} block buttonText={'Sign In'} />
+                                            <AppButton onClick={this._attemptLogin} block buttonText={'Sign In'} />
                                         </Form>
 
                                         <Link to={'/auth/signup'} className={'linkStyle'}>Don't have an account? Sign Up</Link>
@@ -57,6 +74,7 @@ export default class Login extends PureComponent<IProps, IState> {
                         </MDBCol>
                     </MDBRow>
                 </MDBContainer>
+                <ToastContainer />
             </div>
         );
     }
