@@ -1,9 +1,10 @@
 import React, { Suspense} from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import routes from './authRoutes'
-import pRoutes from './protectedRoutes'
+import routes from './routes/authRoutes'
+import pRoutes from './routes/protectedRoutes'
 import CustomLoader from './components/commons/CustomLoader';
+import PrivateRoute from './routes/PrivateRoute'
 
 
 const App: React.FC = () => {
@@ -18,11 +19,13 @@ const App: React.FC = () => {
     });
     const protectedRoutes = pRoutes.map((route, index) => {
         return (route.component) ? (
-            <Route
+            <PrivateRoute
                 key={index}
                 path={route.path}
                 exact={route.exact}
-                component={route.component} />
+                name={route.name}
+                component={route.component}
+            />
         ) : (null);
     });
 

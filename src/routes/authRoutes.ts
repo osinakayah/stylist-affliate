@@ -1,7 +1,7 @@
 import {lazy} from 'react';
 
-const Register = lazy(() => import('./containers/auth/Register'));
-const Login = lazy(() => import('./containers/auth/Login'));
+const Register = lazy(() => import('../containers/auth/Register'));
+const Login = lazy(() => import('../containers/auth/Login'));
 
 
 const route = [
