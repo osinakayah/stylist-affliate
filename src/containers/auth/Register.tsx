@@ -13,6 +13,8 @@ import {Link} from "react-router-dom";
 import AppButton from "../../components/commons/AppButton";
 import './styles/LoginStyles.scss'
 import { AuthService } from "../../services/auth.service";
+const banks = require('../../models/bank.json');
+
 
 interface  IProps {
     history: any
@@ -47,6 +49,18 @@ export default class Register extends PureComponent<IProps, IState> {
         // @ts-ignore
         this.setState({[key]: value})
 
+
+
+    }
+    renderBankList = () => {
+        const keys = Object.keys(banks);
+        return keys.map((key, index) => {
+            return <option key={index} value={key}>{banks[key]['name']}</option>
+        });
+    }
+
+    fetchBranchesForBank = () => {
+
     }
 
     render(): React.ReactNode {
@@ -80,8 +94,7 @@ export default class Register extends PureComponent<IProps, IState> {
                                                 <Form.Label>Select Bank</Form.Label>
                                                 <Form.Control onChange={(event: any) => this.handleChange('bankId', event.target.value)} as="select">
                                                     <option></option>
-                                                    <option value={1}>普通</option>
-                                                    <option value={2}>当座</option>
+                                                    {this.renderBankList()}
                                                 </Form.Control>
                                             </Form.Group>
                                             <Form.Group>

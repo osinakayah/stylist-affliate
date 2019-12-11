@@ -20,6 +20,19 @@ export const AuthService = {
         return '';
     },
 
+    getBankBranches: async (bankCode: string) => {
+        try {
+            const response = await Backend.request(`${StylistEndpoints.branches}${bankCode}`, 'GET');
+            SharedService.logger('getBankBranches response', response);
+            if (response.status === 200) {
+                return response.data;
+            }
+            return null;
+        } catch (error) {
+            SharedService.logger('getBankBranches error', error.response);
+            return handleError(error.response);
+        }
+    },
     registerUser: async (body: any) => {
         try {
             const response = await Backend.request(StylistEndpoints.register, 'POST', body);
