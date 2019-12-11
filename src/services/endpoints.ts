@@ -1,5 +1,5 @@
 export const StylistEndpoints = {
-    login: 'auth/Login',
+    login: 'auth/login',
     register: 'auth/register',
     products: 'products',
     branches: 'banks/',

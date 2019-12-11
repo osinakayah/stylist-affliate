@@ -10,7 +10,7 @@ export const AuthService = {
             SharedService.logger('login response', response);
             if (response.status === 201) {
                 StorageService.saveToken(response.data.access_token);
-                return '';
+                return response.data;
             }
             if (response.status === 401) return handleError(response);
         } catch (error) {
