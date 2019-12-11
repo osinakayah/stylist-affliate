@@ -2,6 +2,8 @@ import React, {PureComponent} from 'react'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Avatar from 'react-avatar';
+
+import moment from 'moment';
 import {
     MDBRow,
     MDBCol,
@@ -31,6 +33,9 @@ interface IState {
     pageCount: number,
     sales: any[]
     isLoading: boolean,
+
+    fromDate: Date,
+    toDate: Date,
 }
 
 class Profile extends PureComponent<IProps, IState> {
@@ -40,13 +45,26 @@ class Profile extends PureComponent<IProps, IState> {
             pageCount: 1,
             page: 1,
             sales: [],
-            isLoading: false
+            isLoading: false,
+
+            fromDate: new Date(),
+            toDate: new Date(),
         }
     }
 
     componentDidMount(): void {
         this.fetchSales(1)
 
+    }
+    toDateSelected = (date:any) => {
+
+
+        const toDate: string = moment(this.state.toDate).format('YYYY-MM-DD HH:mm:ss.SSSSSS');
+        const fromDate: string = moment(this.state.fromDate).format('YYYY-MM-DD HH:mm:ss.SSSSSS');
+
+        const filter = `filter=createdAt||gt||${fromDate}&filter=createdAt||lt||${toDate}`
+
+        this.fetchSales(this.state.page, filter);
     }
     render(): React.ReactNode {
         const {pathname} = this.props.location;
@@ -102,14 +120,14 @@ class Profile extends PureComponent<IProps, IState> {
                     <MDBRow className={'ml-3'}>
                         <MDBCol xs={'12'} sm={'6'} className={'mt-3'} >
                             <span> From: <DatePicker
-                                selected={new Date()}
-                                onChange={()=>{}}
+                                selected={this.state.fromDate}
+                                onChange={(date: Date) => this.setState({fromDate: date})}
                             /></span>
                         </MDBCol>
                         <MDBCol xs={'12'} sm={'6'} className={'mt-3'}>
                             <span> To: <DatePicker
-                                selected={new Date()}
-                                onChange={()=>{}}
+                                selected={this.state.toDate}
+                                onChange={this.toDateSelected}
                             /></span>
                         </MDBCol>
                         <MDBCol xs={'12'} sm={'6'} className={'mt-2'}>
@@ -138,10 +156,10 @@ class Profile extends PureComponent<IProps, IState> {
             </AppDrawer>
         );
     }
-    fetchSales = async (page: number) => {
+    fetchSales = async (page: number, filter: string|null = null) => {
         this.setState({isLoading: true})
 
-        const response = await SalesService.getSales(page);
+        const response = await SalesService.getSales(page, filter);
 
         this.setState({isLoading: false})
         if (response) {
