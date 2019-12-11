@@ -10,10 +10,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import Form  from 'react-bootstrap/Form';
 import {Link} from "react-router-dom";
 
+import CustomLoader from '../../components/commons/CustomLoader'
 import AppButton from "../../components/commons/AppButton";
 import './styles/LoginStyles.scss'
 import { AuthService } from "../../services/auth.service";
 const banks = require('../../models/bank.json');
+
 
 
 interface  IProps {
@@ -27,10 +29,21 @@ interface IState {
     branchId: number,
     accountType: number,
     accountNumber: string,
-    accountName: string
+    accountName: string,
+    branches: any[],
+    isLoadingBranch: boolean
 }
 
 export default class Register extends PureComponent<IProps, IState> {
+
+    constructor(props: IProps) {
+        super(props);
+        // @ts-ignore
+        this.state = {
+            branches: [],
+            isLoadingBranch: false
+        }
+    }
 
     attemptRegister = async () => {
         const response = await AuthService.registerUser(this.state);
@@ -49,6 +62,11 @@ export default class Register extends PureComponent<IProps, IState> {
         // @ts-ignore
         this.setState({[key]: value})
 
+        if (key === 'bankId'){
+            this.fetchBranchesForBank(value)
+        }
+        console.log(key, value);
+
 
 
     }
@@ -59,8 +77,19 @@ export default class Register extends PureComponent<IProps, IState> {
         });
     }
 
-    fetchBranchesForBank = () => {
+    fetchBranchesForBank = async (bankID: string) => {
+        this.setState({isLoadingBranch: true})
+        const response = await AuthService.getBankBranches(bankID);
+        this.setState({
+            branches: response,
+            isLoadingBranch: false
+        })
 
+    }
+    renderBranches = () => {
+        return this.state.branches.map((singleBranch, index) => {
+            return <option key={index} value={singleBranch.code}>{singleBranch.name}</option>
+        });
     }
 
     render(): React.ReactNode {
@@ -99,14 +128,15 @@ export default class Register extends PureComponent<IProps, IState> {
                                             </Form.Group>
                                             <Form.Group>
                                                 <Form.Label>Select Bank Branch</Form.Label>
+                                                {this.state.isLoadingBranch ? <CustomLoader/>: null}
                                                 <Form.Control onChange={(event: any) => this.handleChange('branchId', event.target.value)} as="select">
                                                     <option></option>
-                                                    <option value={1}>普通</option>
-                                                    <option value={2}>当座</option>
+                                                    {this.renderBranches()}
                                                 </Form.Control>
                                             </Form.Group>
                                             <Form.Group>
                                                 <Form.Label>Select Account type</Form.Label>
+
                                                 <Form.Control onChange={(event: any) => this.handleChange('accountType', event.target.value)} as="select">
                                                     <option></option>
                                                     <option value={1}>普通</option>

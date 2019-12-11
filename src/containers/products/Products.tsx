@@ -1,7 +1,8 @@
 import React, {PureComponent} from 'react'
 import {
     MDBRow,
-    MDBContainer,
+    MDBCol,
+    MDBContainer, MDBPagination, MDBPageItem, MDBPageNav,
 } from "mdbreact";
 import AppDrawer from '../../components/commons/AppDrawer';
 import ProductDetail from '../../components/products/ProductDetail'
@@ -16,8 +17,8 @@ interface IProps {
 interface IState {
     showProductDetailModal: boolean,
     showProductDetailQRCode: boolean,
-
-    page: number,
+    page: number
+    pageCount: number,
     products: any[]
     isLoading: boolean
 
@@ -30,6 +31,7 @@ class Products extends PureComponent<IProps, IState> {
         this.state = {
             showProductDetailModal: false,
             showProductDetailQRCode: false,
+            pageCount: 1,
             page: 1,
             products: [],
             isLoading: false
@@ -37,19 +39,35 @@ class Products extends PureComponent<IProps, IState> {
     }
 
     componentDidMount(): void {
-        this.fetchProducts(this.state.page)
+        this.fetchProducts(1)
 
     }
 
     fetchProducts = async (page: number) => {
         this.setState({isLoading: true})
         const response = await ProductService.getProducts(page);
+
         this.setState({isLoading: false})
         if (response) {
-            const { data } = response;
-            this.setState({products: data})
+            const { data, pageCount, page } = response;
+            this.setState({products: data, pageCount, page})
         }
 
+    }
+
+    renderPagination = () => {
+        const paginationItems = []
+        for (let i = 1; i <= this.state.pageCount; i ++) {
+
+            paginationItems.push(
+                <MDBPageItem onClick={() => this.fetchProducts(i)} key={i} active={i === this.state.page}>
+                    <MDBPageNav className="page-link">
+                        {i} <span className="sr-only">(current)</span>
+                    </MDBPageNav>
+                </MDBPageItem>
+            );
+        }
+        return paginationItems;
     }
 
     displayProductDetails = () => {
@@ -61,14 +79,22 @@ class Products extends PureComponent<IProps, IState> {
 
     renderProducts = () => {
 
-        return this.state.products.map((product) => {
-            return <SingleProductList
-                productImage={'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/img (55).jpg'}
-                key={product.id}
-                productName={product.productName}
-                displayProductDetails={this.displayProductDetails}
-                displayProductQRCode={this.displayProductQRCode} />
-        });
+        if (this.state.products.length > 0) {
+            return this.state.products.map((product) => {
+                return <SingleProductList
+                    productImage={'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/img (55).jpg'}
+                    key={product.id}
+                    productName={product.productName}
+                    displayProductDetails={this.displayProductDetails}
+                    displayProductQRCode={this.displayProductQRCode} />
+            });
+        }
+        return (
+            <MDBCol>
+             <h5 className="text-center" style={{marginTop: '50%'}}>No Products Available</h5>
+            </MDBCol>
+        )
+
     }
 
     render(): React.ReactNode {
@@ -88,6 +114,12 @@ class Products extends PureComponent<IProps, IState> {
                             </MDBRow>
                         </section>
                     </div>
+
+                    <MDBRow className={'mt-7 ml-1 mr-1'} style={{marginTop: '5%'}}>
+                        <MDBPagination size={'sm'}>
+                            {this.renderPagination()}
+                        </MDBPagination>
+                    </MDBRow>
                 </MDBContainer>
 
             </AppDrawer>

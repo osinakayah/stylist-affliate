@@ -17,6 +17,8 @@ import {
 
 
 import AppDrawer from '../../components/commons/AppDrawer';
+import SalesService from "../../services/sales.service";
+import AppButton from "../../components/commons/AppButton";
 
 
 
@@ -25,10 +27,27 @@ interface IProps {
 }
 
 interface IState {
-
+    page: number
+    pageCount: number,
+    sales: any[]
+    isLoading: boolean,
 }
 
 class Profile extends PureComponent<IProps, IState> {
+    constructor(props: IProps){
+        super(props);
+        this.state = {
+            pageCount: 1,
+            page: 1,
+            sales: [],
+            isLoading: false
+        }
+    }
+
+    componentDidMount(): void {
+        this.fetchSales(1)
+
+    }
     render(): React.ReactNode {
         const {pathname} = this.props.location;
         const data_people = {
@@ -41,6 +60,11 @@ class Profile extends PureComponent<IProps, IState> {
                 {
                     label: 'Name',
                     field: 'name',
+                    sort: 'asc'
+                },
+                {
+                    label: 'Price',
+                    field: 'price',
                     sort: 'asc'
                 },
                 {
@@ -58,57 +82,10 @@ class Profile extends PureComponent<IProps, IState> {
                 {
                     'id': '1',
                     'name': 'Braid',
-                    'commission': 'Y 200',
+                    'price': 'Y1,200',
+                    'commission': 'Y200',
                     'date': 'December 1, 2019',
-                },
-                {
-                    'id': '1',
-                    'name': 'Braid',
-                    'commission': 'Y 200',
-                    'date': 'December 1, 2019',
-                },
-                {
-                    'id': '1',
-                    'name': 'Braid',
-                    'commission': 'Y 200',
-                    'date': 'December 1, 2019',
-                },
-                {
-                    'id': '1',
-                    'name': 'Braid',
-                    'commission': 'Y 200',
-                    'date': 'December 1, 2019',
-                },
-                {
-                    'id': '1',
-                    'name': 'Braid',
-                    'commission': 'Y 200',
-                    'date': 'December 1, 2019',
-                },
-                {
-                    'id': '1',
-                    'name': 'Braid',
-                    'commission': 'Y 200',
-                    'date': 'December 1, 2019',
-                },
-                {
-                    'id': '1',
-                    'name': 'Braid',
-                    'commission': 'Y 200',
-                    'date': 'December 1, 2019',
-                },
-                {
-                    'id': '1',
-                    'name': 'Braid',
-                    'commission': 'Y 200',
-                    'date': 'December 1, 2019',
-                },
-                {
-                    'id': '1',
-                    'name': 'Braid',
-                    'commission': 'Y 200',
-                    'date': 'December 1, 2019',
-                },
+                }
             ]
         };
         return (
@@ -140,48 +117,61 @@ class Profile extends PureComponent<IProps, IState> {
                                 <MDBInput hint="Search" type="text" containerClass="active-pink active-pink-2 mt-0 mb-3" />
                             </div>
                         </MDBCol>
+                        <MDBCol xs={'12'} sm={'6'} className={'mt-2'}>
+                            <AppButton onClick={()=>{}} buttonText={'Search'}/>
+                        </MDBCol>
+
 
                     </MDBRow>
 
-                    <MDBTable striped responsive>
+                    <MDBTable striped autoWidth responsive>
                         <MDBTableHead columns={data_people.columns}/>
-                        <MDBTableBody rows={data_people.rows} />
+                        <MDBTableBody rows={this.state.sales} />
                     </MDBTable>
-                    <MDBRow>
-                        <MDBPagination circle>
-                            <MDBPageItem disabled>
-                                <MDBPageNav className="page-link">
-                                    <span>First</span>
-                                </MDBPageNav>
-                            </MDBPageItem>
-                            <MDBPageItem disabled>
-                                <MDBPageNav className="page-link" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                    <span className="sr-only">Previous</span>
-                                </MDBPageNav>
-                            </MDBPageItem>
-                            <MDBPageItem active>
-                                <MDBPageNav className="page-link">
-                                    1 <span className="sr-only">(current)</span>
-                                </MDBPageNav>
-                            </MDBPageItem>
-                            <MDBPageItem>
-                                <MDBPageNav className="page-link">
-                                    2
-                                </MDBPageNav>
-                            </MDBPageItem>
-
-                            <MDBPageItem>
-                                <MDBPageNav className="page-link">
-                                    &raquo;
-                                </MDBPageNav>
-                            </MDBPageItem>
-                        </MDBPagination>
-                    </MDBRow>
+                    <MDBRow className={'mt-7 ml-1 mr-1'} style={{marginTop: '5%'}}>
+                        <MDBPagination size={'sm'}>
+                                {this.renderPagination()}
+                            </MDBPagination>
+                        </MDBRow>
                 </MDBContainer>
 
             </AppDrawer>
         );
+    }
+    fetchSales = async (page: number) => {
+        this.setState({isLoading: true})
+
+        const response = await SalesService.getSales(page);
+
+        this.setState({isLoading: false})
+        if (response) {
+            const { data, pageCount, page } = response;
+            const sales = data.map((datum: any) => {
+                return {
+                    id: datum.id,
+                    'name': datum.product.productName,
+                    'price': datum.price,
+                    'commission': (datum.price * 0.3),
+                    'date': datum.updatedAt,
+                };
+            });
+            this.setState({sales, pageCount, page})
+        }
+
+    }
+    renderPagination = () => {
+        const paginationItems = []
+        for (let i = 1; i <= this.state.pageCount; i ++) {
+
+            paginationItems.push(
+                <MDBPageItem onClick={() => this.fetchSales(i)} key={i} active={i === this.state.page}>
+                    <MDBPageNav className="page-link">
+                        {i} <span className="sr-only">(current)</span>
+                    </MDBPageNav>
+                </MDBPageItem>
+            );
+        }
+        return paginationItems;
     }
 }
 
