@@ -4,11 +4,12 @@ import AppButton from "../../components/commons/AppButton";
 
 interface SingleProductGridProps {
     productName: string,
+    productImage: string,
     displayProductDetails: ()=>void
     displayProductQRCode: () => void
 }
 
-const SingleProductList: React.FC<SingleProductGridProps>  = ({productName, displayProductDetails, displayProductQRCode}) => {
+const SingleProductList: React.FC<SingleProductGridProps>  = ({productName, displayProductDetails, displayProductQRCode, productImage}) => {
 
     return (
         <MDBCol lg={'12'} md={'12'} sm={'6'} xs={'12'} className={'mt-3'}>
@@ -16,8 +17,8 @@ const SingleProductList: React.FC<SingleProductGridProps>  = ({productName, disp
                 <div style={{display: 'flex', flexDirection: 'row'}}>
                     <img
                         style={{width: '30%', height: 'auto'}}
-                        src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/img (55).jpg"
-                        alt="sample photo"
+                        src={productImage}
+                        alt="product sample"
                     />
                     <div style={{display: 'flex', flexDirection: 'column'}}>
                         <h6 className={'mt-3 ml-3 text-left'}>{productName}</h6>

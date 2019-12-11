@@ -30,20 +30,20 @@ interface IState {
 
 export default class Register extends PureComponent<IProps, IState> {
 
-    _attemptRegister = async () => {
+    attemptRegister = async () => {
         const response = await AuthService.registerUser(this.state);
         if (response.length > 0){
             toast(response);
         }
         else {
-            this._gotoProductsList()
+            this.gotoProductsList()
         }
     }
-    _gotoProductsList = () => {
+    gotoProductsList = () => {
 
         this.props.history.push('/product')
     }
-    _handleChange = (key: string, value: string) => {
+    handleChange = (key: string, value: string) => {
         // @ts-ignore
         this.setState({[key]: value})
 
@@ -65,20 +65,20 @@ export default class Register extends PureComponent<IProps, IState> {
                                         <Form className={'mb-3'}>
                                             <Form.Group>
                                                 <Form.Label>Full Name</Form.Label>
-                                                <Form.Control onChange={(event: any) => this._handleChange('fullName', event.target.value)} type="text" placeholder="Enter Full Name" />
+                                                <Form.Control onChange={(event: any) => this.handleChange('fullName', event.target.value)} type="text" placeholder="Enter Full Name" />
                                             </Form.Group>
 
                                             <Form.Group>
                                                 <Form.Label>Email address</Form.Label>
-                                                <Form.Control onChange={(event: any) => this._handleChange('email', event.target.value)} type="email" placeholder="Enter email" />
+                                                <Form.Control onChange={(event: any) => this.handleChange('email', event.target.value)} type="email" placeholder="Enter email" />
                                             </Form.Group>
                                             <Form.Group >
                                                 <Form.Label>Password</Form.Label>
-                                                <Form.Control onChange={(event: any) => this._handleChange('password', event.target.value)} type="password" placeholder="Password" />
+                                                <Form.Control onChange={(event: any) => this.handleChange('password', event.target.value)} type="password" placeholder="Password" />
                                             </Form.Group>
                                             <Form.Group>
                                                 <Form.Label>Select Bank</Form.Label>
-                                                <Form.Control onChange={(event: any) => this._handleChange('bankId', event.target.value)} as="select">
+                                                <Form.Control onChange={(event: any) => this.handleChange('bankId', event.target.value)} as="select">
                                                     <option></option>
                                                     <option value={1}>普通</option>
                                                     <option value={2}>当座</option>
@@ -86,7 +86,7 @@ export default class Register extends PureComponent<IProps, IState> {
                                             </Form.Group>
                                             <Form.Group>
                                                 <Form.Label>Select Bank Branch</Form.Label>
-                                                <Form.Control onChange={(event: any) => this._handleChange('branchId', event.target.value)} as="select">
+                                                <Form.Control onChange={(event: any) => this.handleChange('branchId', event.target.value)} as="select">
                                                     <option></option>
                                                     <option value={1}>普通</option>
                                                     <option value={2}>当座</option>
@@ -94,7 +94,7 @@ export default class Register extends PureComponent<IProps, IState> {
                                             </Form.Group>
                                             <Form.Group>
                                                 <Form.Label>Select Account type</Form.Label>
-                                                <Form.Control onChange={(event: any) => this._handleChange('accountType', event.target.value)} as="select">
+                                                <Form.Control onChange={(event: any) => this.handleChange('accountType', event.target.value)} as="select">
                                                     <option></option>
                                                     <option value={1}>普通</option>
                                                     <option value={2}>当座</option>
@@ -102,13 +102,13 @@ export default class Register extends PureComponent<IProps, IState> {
                                             </Form.Group>
                                             <Form.Group >
                                                 <Form.Label>Account Name</Form.Label>
-                                                <Form.Control onChange={(event: any) => this._handleChange('accountName', event.target.value)} type="email" placeholder="Enter Account Name" />
+                                                <Form.Control onChange={(event: any) => this.handleChange('accountName', event.target.value)} type="email" placeholder="Enter Account Name" />
                                             </Form.Group>
                                             <Form.Group >
                                                 <Form.Label>Account Number</Form.Label>
-                                                <Form.Control onChange={(event: any) => this._handleChange('accountNumber', event.target.value)} type="email" placeholder="Enter Account Number" />
+                                                <Form.Control onChange={(event: any) => this.handleChange('accountNumber', event.target.value)} type="email" placeholder="Enter Account Number" />
                                             </Form.Group>
-                                            <AppButton onClick={this._attemptRegister} block buttonText={'Sign Up'} />
+                                            <AppButton onClick={this.attemptRegister} block buttonText={'Sign Up'} />
                                         </Form>
 
                                         <Link to={'/auth/signin'} className={'linkStyle'}>Already have an account? Sign In</Link>

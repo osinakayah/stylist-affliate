@@ -22,19 +22,19 @@ interface IState {
 }
 
 export default class Login extends PureComponent<IProps, IState> {
-    _attemptLogin = async () => {
+    attemptLogin = async () => {
         const response: string = await AuthService.userAuth(this.state);
         if (response.length > 0){
             toast(response);
         }
         else {
-            this._gotoProductsList();
+            this.gotoProductsList();
         }
     }
-    _gotoProductsList = () => {
+    gotoProductsList = () => {
         this.props.history.push('/product')
     }
-    _handleChange = (key: string, value: string) => {
+    handleChange = (key: string, value: string) => {
         // @ts-ignore
         this.setState({[key]: value})
 
@@ -56,13 +56,13 @@ export default class Login extends PureComponent<IProps, IState> {
 
                                             <Form.Group>
                                                 <Form.Label>Email address</Form.Label>
-                                                <Form.Control onChange={(event: any) => this._handleChange('email', event.target.value)} type="email" placeholder="Enter email" />
+                                                <Form.Control onChange={(event: any) => this.handleChange('email', event.target.value)} type="email" placeholder="Enter email" />
                                             </Form.Group>
                                             <Form.Group >
                                                 <Form.Label>Password</Form.Label>
-                                                <Form.Control onChange={(event: any) => this._handleChange('password', event.target.value)} type="password" placeholder="Password" />
+                                                <Form.Control onChange={(event: any) => this.handleChange('password', event.target.value)} type="password" placeholder="Password" />
                                             </Form.Group>
-                                            <AppButton onClick={this._attemptLogin} block buttonText={'Sign In'} />
+                                            <AppButton onClick={this.attemptLogin} block buttonText={'Sign In'} />
                                         </Form>
 
                                         <Link to={'/auth/signup'} className={'linkStyle'}>Don't have an account? Sign Up</Link>
