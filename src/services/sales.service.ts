@@ -15,6 +15,7 @@ const SalesService = {
             if (response.status >= 200 && response.status < 300) {
                 return response.data;
             }
+            if (response.status === 401) Backend.handle401();
             return null;
 
         } catch (e) {

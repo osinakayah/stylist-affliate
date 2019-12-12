@@ -65,7 +65,6 @@ export default class Register extends PureComponent<IProps, IState> {
         if (key === 'bankId'){
             this.fetchBranchesForBank(value)
         }
-        console.log(key, value);
 
 
 

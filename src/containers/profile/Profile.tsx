@@ -21,8 +21,8 @@ import {
 import AppDrawer from '../../components/commons/AppDrawer';
 import SalesService from "../../services/sales.service";
 import AppButton from "../../components/commons/AppButton";
-
-
+import {StorageService} from "../../services/storage.service";
+import { StorageKeys } from "../../services/StorageKeys";
 
 interface IProps {
     location: any
@@ -111,9 +111,10 @@ class Profile extends PureComponent<IProps, IState> {
                 <MDBContainer style={{backgroundColor: '#fff'}}>
                     <MDBRow>
                         <MDBCol className={'offset-md-5  offset-lg-5 offset-sm-1 mb-lg-0 mb-5 text-center'}  xs={'12'} lg="2" md="2" >
-                            <Avatar style={{marginTop: '12%',}} round name="Chinomso Nwachukwu" />
-                            <h5 className="font-weight-bold mt-4 mb-3 text-center">Chinomso Nwachukwu</h5>
-                            <p className="text-uppercase blue-text text-center">Expert Sales Rep</p>
+
+                            <Avatar style={{marginTop: '12%',}} round name={StorageService.getData(StorageKeys.fullName) ? StorageService.getData(StorageKeys.fullName): ''} />
+                            <h5 className="font-weight-bold mt-4 mb-3 text-center">{StorageService.getData(StorageKeys.fullName)}</h5>
+                            <p className="text-uppercase blue-text text-center">{StorageService.getData(StorageKeys.rank)}</p>
                         </MDBCol>
                     </MDBRow>
 

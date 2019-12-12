@@ -3,13 +3,15 @@ import {MDBCard, MDBCol} from "mdbreact";
 import AppButton from "../../components/commons/AppButton";
 
 interface SingleProductGridProps {
+    index: number
     productName: string,
     productImage: string,
-    displayProductDetails: ()=>void
-    displayProductQRCode: () => void
+    productPrice: number,
+    displayProductDetails: (index: number)=>void
+    displayProductQRCode: (index: number) => void
 }
 
-const SingleProductList: React.FC<SingleProductGridProps>  = ({productName, displayProductDetails, displayProductQRCode, productImage}) => {
+const SingleProductList: React.FC<SingleProductGridProps>  = ({index, productName, displayProductDetails, displayProductQRCode, productImage, productPrice}) => {
 
     return (
         <MDBCol lg={'12'} md={'12'} sm={'6'} xs={'12'} className={'mt-3'}>
@@ -22,13 +24,17 @@ const SingleProductList: React.FC<SingleProductGridProps>  = ({productName, disp
                     />
                     <div style={{display: 'flex', flexDirection: 'column'}}>
                         <h6 className={'mt-3 ml-3 text-left'}>{productName}</h6>
-                        <strong className={'ml-3 text-left'}>Reward: <span>&#165;</span> 1,439</strong>
+                        <strong className={'ml-3 text-left'}><span>&#165;</span>{productPrice} <span>&#165;</span>({productPrice*0.3})</strong>
                         <div className={"px-1 mt-3 ml-7"}>
                             <span className="float-left">
-                              <AppButton outline onClick={displayProductDetails} buttonText={'Detail'}/>
+                              <AppButton outline onClick={() => {
+                                  displayProductDetails(index);
+                              }} buttonText={'Detail'}/>
                             </span>
                             <span className="float-right">
-                                <AppButton onClick={displayProductQRCode} buttonText={'QR Code'}/>
+                                <AppButton onClick={() => {
+                                    displayProductQRCode(index);
+                                }} buttonText={'QR Code'}/>
                             </span>
                         </div>
                     </div>

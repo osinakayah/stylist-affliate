@@ -4,6 +4,7 @@ export const StorageService = {
     removeToken: () => localStorage.removeItem('@stylist'),
 
     saveData: (key: string, value: string) => localStorage.setItem(`@stylist-${key}`, value),
-    getData: (key: string): string | null => localStorage.getItem(`@stylist-${key}`),
+    // @ts-ignore
+    getData: (key: string): string => localStorage.getItem(`@stylist-${key}`),
     removeData: (key: string) => localStorage.removeItem(`@stylist-${key}`),
 };

@@ -7,9 +7,15 @@ import {
 import AppDrawer from '../../components/commons/AppDrawer';
 import ProductDetail from '../../components/products/ProductDetail'
 import ProductQRCode from '../../components/products/ProductQRCode'
+import CreateProduct from '../../components/products/CreateProduct'
 import SingleProductList from '../../components/products/SingleProductList'
 import ProductService from '../../services/product.service'
 import CustomLoader from '../../components/commons/CustomLoader'
+import AppButton from "../../components/commons/AppButton";
+import { StorageService } from "../../services/storage.service";
+import { StorageKeys } from "../../services/StorageKeys";
+import { baseUrl } from "../../services/backend.service";
+
 interface IProps {
     location: any
 }
@@ -20,7 +26,15 @@ interface IState {
     page: number
     pageCount: number,
     products: any[]
-    isLoading: boolean
+    isLoading: boolean,
+    isAdmin: boolean,
+    showCreateProductModal: boolean,
+
+    selectedProductName: string,
+    selectedProductDescription: string,
+    selectedProductLandingPage: string,
+    selectedProductImage: string,
+    selectedProductPrice: number
 
 }
 
@@ -34,7 +48,15 @@ class Products extends PureComponent<IProps, IState> {
             pageCount: 1,
             page: 1,
             products: [],
-            isLoading: false
+            isLoading: false,
+            // isAdmin: true,
+            showCreateProductModal: false,
+            isAdmin: StorageService.getData(StorageKeys.userType) === 'admin',
+            selectedProductName: '',
+            selectedProductDescription: '',
+            selectedProductLandingPage: '',
+            selectedProductImage: '',
+            selectedProductPrice: 0
         }
     }
 
@@ -70,11 +92,42 @@ class Products extends PureComponent<IProps, IState> {
         return paginationItems;
     }
 
-    displayProductDetails = () => {
-        this.setState({showProductDetailModal: !this.state.showProductDetailModal})
+    displayProductDetails = (index: number=-1) => {
+
+        if (index > 0) {
+            const product = this.state.products.filter((product:any) => product.id === index)[0]
+            this.setState({
+                selectedProductName: product.productName,
+                selectedProductDescription: product.description,
+                selectedProductImage: product.productImage,
+                selectedProductLandingPage: product.productLandingPage,
+                selectedProductPrice: product.price,
+            })
+        }
+
+        this.setState({
+            showProductDetailModal: !this.state.showProductDetailModal,
+        })
     }
-    displayProductQRCode = () => {
-        this.setState({showProductDetailQRCode: !this.state.showProductDetailQRCode})
+    displayProductQRCode = (index: number=-1) => {
+        if (index > 0) {
+            const product = this.state.products.filter((product:any) => product.id === index)[0]
+            this.setState({
+                selectedProductName: product.productName,
+                selectedProductDescription: product.description,
+                selectedProductImage: product.productImage,
+                selectedProductLandingPage: product.productLandingPage,
+                selectedProductPrice: product.price,
+            })
+        }
+
+
+        this.setState({
+            showProductDetailQRCode: !this.state.showProductDetailQRCode,
+        })
+    }
+    displayCreateProduct = () => {
+        this.setState({showCreateProductModal: !this.state.showCreateProductModal})
     }
 
     renderProducts = () => {
@@ -82,7 +135,9 @@ class Products extends PureComponent<IProps, IState> {
         if (this.state.products.length > 0) {
             return this.state.products.map((product) => {
                 return <SingleProductList
-                    productImage={'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/img (55).jpg'}
+                    index={product.id}
+                    productPrice={product.price}
+                    productImage={baseUrl+"products/image/"+product.productImage}
                     key={product.id}
                     productName={product.productName}
                     displayProductDetails={this.displayProductDetails}
@@ -96,6 +151,15 @@ class Products extends PureComponent<IProps, IState> {
         )
 
     }
+        renderCreateProductButton = () => {
+            if (this.state.isAdmin) {
+                return (
+                    <MDBRow >
+                        <AppButton onClick={this.displayCreateProduct} buttonText={'Create Product'}/>
+                    </MDBRow>
+                )
+            }
+        }
 
     render(): React.ReactNode {
 
@@ -104,11 +168,27 @@ class Products extends PureComponent<IProps, IState> {
         return (
             <AppDrawer activeRoute={pathname}>
                 <MDBContainer fluid>
+                    {this.state.isAdmin? <CreateProduct isOpen={this.state.showCreateProductModal} toggleModalFunc={this.displayCreateProduct}/>: null}
 
-                    <ProductDetail showQRCode={this.displayProductQRCode} toggleModalFunc={this.displayProductDetails} isOpen={this.state.showProductDetailModal}/>
-                    <ProductQRCode toggleModalFunc={this.displayProductQRCode} isOpen={this.state.showProductDetailQRCode}/>
+                    <ProductDetail
+                        productImage={this.state.selectedProductImage}
+                        productDescription={this.state.selectedProductDescription}
+                        productPrice={this.state.selectedProductPrice}
+                        showQRCode={this.displayProductQRCode}
+                        toggleModalFunc={this.displayProductDetails}
+                        isOpen={this.state.showProductDetailModal}/>
+                    <ProductQRCode
+                        productLandingPage={this.state.selectedProductLandingPage}
+                        productImage={this.state.selectedProductImage}
+                        productDescription={this.state.selectedProductDescription}
+                        productPrice={this.state.selectedProductPrice}
+
+                        toggleModalFunc={this.displayProductQRCode}
+                        isOpen={this.state.showProductDetailQRCode}/>
                     <div className={'products-list-container'}>
                         <section className="text-center">
+
+                            {this.renderCreateProductButton()}
                             <MDBRow >
                                 {this.state.isLoading ? <CustomLoader />: this.renderProducts()}
                             </MDBRow>

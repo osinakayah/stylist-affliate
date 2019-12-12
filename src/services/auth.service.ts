@@ -2,6 +2,7 @@ import SharedService from "./shared.service";
 import Backend from "./backend.service";
 import { StylistEndpoints } from "./endpoints";
 import { StorageService } from './storage.service';
+import { StorageKeys } from "./StorageKeys";
 
 export const AuthService = {
     userAuth: async (body: any): Promise<string> => {
@@ -10,7 +11,10 @@ export const AuthService = {
             SharedService.logger('login response', response);
             if (response.status === 201) {
                 StorageService.saveToken(response.data.access_token);
-                return response.data;
+                StorageService.saveData(StorageKeys.fullName, response.data.fullName);
+                StorageService.saveData(StorageKeys.rank, response.data.rank);
+                StorageService.saveData(StorageKeys.userType, response.data.userType);
+                return '';
             }
             if (response.status === 401) return handleError(response);
         } catch (error) {
