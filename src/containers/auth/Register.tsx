@@ -14,7 +14,6 @@ import CustomLoader from '../../components/commons/CustomLoader'
 import AppButton from "../../components/commons/AppButton";
 import './styles/LoginStyles.scss'
 import { AuthService } from "../../services/auth.service";
-const banks = require('../../models/bank.json');
 
 
 
