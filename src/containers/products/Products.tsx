@@ -12,9 +12,9 @@ import SingleProductList from '../../components/products/SingleProductList'
 import ProductService from '../../services/product.service'
 import CustomLoader from '../../components/commons/CustomLoader'
 import AppButton from "../../components/commons/AppButton";
-import { StorageService } from "../../services/storage.service";
-import { StorageKeys } from "../../services/StorageKeys";
-import { baseUrl } from "../../services/backend.service";
+import {StorageService} from "../../services/storage.service";
+import {StorageKeys} from "../../services/StorageKeys";
+import {baseUrl} from "../../services/backend.service";
 
 interface IProps {
     location: any
@@ -30,6 +30,7 @@ interface IState {
     isAdmin: boolean,
     showCreateProductModal: boolean,
 
+    selectedProductID: number,
     selectedProductName: string,
     selectedProductDescription: string,
     selectedProductLandingPage: string,
@@ -37,12 +38,13 @@ interface IState {
     selectedProductPrice: number
 
 }
-
+const affiliateID = StorageService.getData(StorageKeys.id);
 class Products extends PureComponent<IProps, IState> {
 
-    constructor(props: IProps){
+    constructor(props: IProps) {
         super(props);
         this.state = {
+            selectedProductID: 0,
             showProductDetailModal: false,
             showProductDetailQRCode: false,
             pageCount: 1,
@@ -71,7 +73,7 @@ class Products extends PureComponent<IProps, IState> {
 
         this.setState({isLoading: false})
         if (response) {
-            const { data, pageCount, page } = response;
+            const {data, pageCount, page} = response;
             this.setState({products: data, pageCount, page})
         }
 
@@ -79,7 +81,7 @@ class Products extends PureComponent<IProps, IState> {
 
     renderPagination = () => {
         const paginationItems = []
-        for (let i = 1; i <= this.state.pageCount; i ++) {
+        for (let i = 1; i <= this.state.pageCount; i++) {
 
             paginationItems.push(
                 <MDBPageItem onClick={() => this.fetchProducts(i)} key={i} active={i === this.state.page}>
@@ -92,11 +94,12 @@ class Products extends PureComponent<IProps, IState> {
         return paginationItems;
     }
 
-    displayProductDetails = (index: number=-1) => {
+    displayProductDetails = (index: number = -1) => {
 
         if (index > 0) {
-            const product = this.state.products.filter((product:any) => product.id === index)[0]
+            const product = this.state.products.filter((product: any) => product.id === index)[0]
             this.setState({
+                selectedProductID: product.id,
                 selectedProductName: product.productName,
                 selectedProductDescription: product.description,
                 selectedProductImage: product.productImage,
@@ -109,10 +112,11 @@ class Products extends PureComponent<IProps, IState> {
             showProductDetailModal: !this.state.showProductDetailModal,
         })
     }
-    displayProductQRCode = (index: number=-1) => {
+    displayProductQRCode = (index: number = -1) => {
         if (index > 0) {
-            const product = this.state.products.filter((product:any) => product.id === index)[0]
+            const product = this.state.products.filter((product: any) => product.id === index)[0]
             this.setState({
+                selectedProductID: product.id,
                 selectedProductName: product.productName,
                 selectedProductDescription: product.description,
                 selectedProductImage: product.productImage,
@@ -137,29 +141,46 @@ class Products extends PureComponent<IProps, IState> {
                 return <SingleProductList
                     index={product.id}
                     productPrice={product.price}
-                    productImage={baseUrl+"products/image/"+product.productImage}
+                    productImage={baseUrl + "products/image/" + product.productImage}
                     key={product.id}
                     productName={product.productName}
                     displayProductDetails={this.displayProductDetails}
-                    displayProductQRCode={this.displayProductQRCode} />
+                    displayProductQRCode={this.displayProductQRCode}/>
             });
         }
         return (
             <MDBCol>
-             <h5 className="text-center" style={{marginTop: '50%'}}>No Products Available</h5>
+                <h5 className="text-center" style={{marginTop: '50%'}}>No Products Available</h5>
             </MDBCol>
         )
 
     }
-        renderCreateProductButton = () => {
-            if (this.state.isAdmin) {
-                return (
-                    <MDBRow >
-                        <AppButton onClick={this.displayCreateProduct} buttonText={'Create Product'}/>
-                    </MDBRow>
-                )
-            }
+    renderCreateProductButton = () => {
+        if (this.state.isAdmin) {
+            return (
+                <MDBRow>
+                    <AppButton onClick={this.displayCreateProduct} buttonText={'Create Product'}/>
+                </MDBRow>
+            )
         }
+    }
+    urlParameters = (productLandingPage: string, productID: number): string => {
+            const urlBody: any = {
+                affiliateID,
+                productID
+            }
+        let url = "";
+        for (let key in urlBody) {
+            if (url !== "") {
+                url += "&";
+            }
+            url += (key + "=" + encodeURIComponent(urlBody[key]));
+        }
+        if (productLandingPage.indexOf('?') === -1) {
+            return `${productLandingPage}?${url}`
+        }
+        return `${productLandingPage}${url}`
+    }
 
     render(): React.ReactNode {
 
@@ -168,7 +189,8 @@ class Products extends PureComponent<IProps, IState> {
         return (
             <AppDrawer activeRoute={pathname}>
                 <MDBContainer fluid>
-                    {this.state.isAdmin? <CreateProduct isOpen={this.state.showCreateProductModal} toggleModalFunc={this.displayCreateProduct}/>: null}
+                    {this.state.isAdmin ? <CreateProduct isOpen={this.state.showCreateProductModal}
+                                                         toggleModalFunc={this.displayCreateProduct}/> : null}
 
                     <ProductDetail
                         productImage={this.state.selectedProductImage}
@@ -178,7 +200,7 @@ class Products extends PureComponent<IProps, IState> {
                         toggleModalFunc={this.displayProductDetails}
                         isOpen={this.state.showProductDetailModal}/>
                     <ProductQRCode
-                        productLandingPage={this.state.selectedProductLandingPage}
+                        productLandingPage={this.urlParameters(this.state.selectedProductLandingPage, this.state.selectedProductID)}
                         productImage={this.state.selectedProductImage}
                         productDescription={this.state.selectedProductDescription}
                         productPrice={this.state.selectedProductPrice}
@@ -189,8 +211,8 @@ class Products extends PureComponent<IProps, IState> {
                         <section className="text-center">
 
                             {this.renderCreateProductButton()}
-                            <MDBRow >
-                                {this.state.isLoading ? <CustomLoader />: this.renderProducts()}
+                            <MDBRow>
+                                {this.state.isLoading ? <CustomLoader/> : this.renderProducts()}
                             </MDBRow>
                         </section>
                     </div>

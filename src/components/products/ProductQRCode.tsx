@@ -22,6 +22,8 @@ interface ProductQRCodeProps {
     productPrice: number,
     productLandingPage: string
 }
+
+
 const ProductQRCode: React.FC<ProductQRCodeProps> = ({productPrice, isOpen, toggleModalFunc, productLandingPage, productImage, productDescription}) => {
     return (
         <MDBContainer>
