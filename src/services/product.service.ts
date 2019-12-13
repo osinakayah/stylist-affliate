@@ -4,6 +4,22 @@ import SharedService from "./shared.service";
 
 const ProductService = {
 
+    getProduct: async (productId: number) => {
+        try {
+            const response = await Backend.request(`${StylistEndpoints.products}/${productId}`, 'get');
+            SharedService.logger('get product', response);
+            if (response.status >= 200 && response.status < 300) {
+                return response.data;
+            }
+            return null;
+
+        } catch (e) {
+            SharedService.logger('get product error', e.response);
+            return e.response.data;
+        }
+    },
+
+
     getProducts: async (page: number) => {
         try {
             const response = await Backend.request(`${StylistEndpoints.products}?page=${page}`, 'get');

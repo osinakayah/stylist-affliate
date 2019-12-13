@@ -1,5 +1,6 @@
 export const StorageKeys = {
     fullName: 'fullName',
     rank: 'rank',
-    userType: 'userType'
+    userType: 'userType',
+    id: 'id'
 };

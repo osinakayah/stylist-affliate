@@ -5,7 +5,7 @@ const Login = lazy(() => import('../containers/auth/Login'));
 
 
 const route = [
-    { path: '/', exact: true, name: 'Register', component: Register },
+    { path: '/', exact: true, name: 'Login', component: Login },
     { path: '/auth/signup', exact: true, name: 'Register', component: Register },
     { path: '/auth/signin', exact: true, name: 'Login', component: Login }
 ];

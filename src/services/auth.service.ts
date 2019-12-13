@@ -11,6 +11,7 @@ export const AuthService = {
             SharedService.logger('login response', response);
             if (response.status === 201) {
                 StorageService.saveToken(response.data.access_token);
+                StorageService.saveData(StorageKeys.id, response.data.id);
                 StorageService.saveData(StorageKeys.fullName, response.data.fullName);
                 StorageService.saveData(StorageKeys.rank, response.data.rank);
                 StorageService.saveData(StorageKeys.userType, response.data.userType);
