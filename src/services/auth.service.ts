@@ -37,6 +37,19 @@ export const AuthService = {
             return handleError(error.response);
         }
     },
+    getBanks: async () => {
+        try {
+            const response = await Backend.request(`${StylistEndpoints.branches}`, 'GET');
+            SharedService.logger('getBank response', response);
+            if (response.status === 200) {
+                return response.data;
+            }
+            return null;
+        } catch (error) {
+            SharedService.logger('getBank error', error.response);
+            return handleError(error.response);
+        }
+    },
     registerUser: async (body: any) => {
         try {
             const response = await Backend.request(StylistEndpoints.register, 'POST', body);

@@ -22,7 +22,7 @@ interface ProductQRCodeProps {
     productPrice: number,
     productLandingPage: string
 }
-const ProductQRCode: React.FC<ProductQRCodeProps> = ({isOpen, toggleModalFunc, productLandingPage, productImage, productDescription}) => {
+const ProductQRCode: React.FC<ProductQRCodeProps> = ({productPrice, isOpen, toggleModalFunc, productLandingPage, productImage, productDescription}) => {
     return (
         <MDBContainer>
             <MDBModal isOpen={isOpen} size={'lg'}>
@@ -52,7 +52,7 @@ const ProductQRCode: React.FC<ProductQRCodeProps> = ({isOpen, toggleModalFunc, p
                             />
                             <div style={{textAlign: 'left'}}>{productDescription}</div>
                             <span className="float-left" style={{lineHeight: '3.7rem'}}>
-                              <strong>Price: 1439$</strong>
+                              <strong>Price: <span>&#165;</span> {productPrice}</strong>
                             </span>
                         </MDBCol>
                     </MDBRow>

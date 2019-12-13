@@ -31,6 +31,7 @@ interface IState {
     accountNumber: string,
     accountName: string,
     branches: any[],
+    banks: any[]
     isLoadingBranch: boolean
 }
 
@@ -41,8 +42,12 @@ export default class Register extends PureComponent<IProps, IState> {
         // @ts-ignore
         this.state = {
             branches: [],
+            banks: [],
             isLoadingBranch: false
         }
+    }
+    componentDidMount(): void {
+        this.fetchBank();
     }
 
     attemptRegister = async () => {
@@ -70,11 +75,19 @@ export default class Register extends PureComponent<IProps, IState> {
 
     }
     renderBankList = () => {
-        const keys = Object.keys(banks);
-        return keys.map((key, index) => {
-            return <option key={index} value={key}>{banks[key]['name']}</option>
+
+        return this.state.banks.map((bank) => {
+            return <option key={bank.code} value={bank.code}>{bank.name}</option>
         });
     }
+    fetchBank = async () => {
+        const response = await AuthService.getBanks();
+        this.setState({
+            banks: response,
+        })
+    }
+
+
 
     fetchBranchesForBank = async (bankID: string) => {
         this.setState({isLoadingBranch: true})

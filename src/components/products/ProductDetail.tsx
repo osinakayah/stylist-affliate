@@ -45,7 +45,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({isOpen, toggleModalFunc, s
                     <MDBRow>
                         <MDBCol>
                             <span className="float-left" style={{lineHeight: '3.7rem'}}>
-                              <strong>Price: {productPrice}</strong>
+                              <strong>Price: <span>&#165;</span> {productPrice}</strong>
                             </span>
                             <span className="float-right">
                                 <AppButton buttonText={'QR Code'} onClick={showQRCode} />
