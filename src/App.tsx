@@ -1,11 +1,10 @@
 import React, { Suspense} from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import routes from './routes/authRoutes'
-import pRoutes from './routes/protectedRoutes'
-import unRoutes from './routes/unprotectedRoutes';
+import routes from './routes/authRoutes';
+import pRoutes from './routes/protectedRoutes';
 import CustomLoader from './components/commons/CustomLoader';
-import PrivateRoute from './routes/PrivateRoute'
+import PrivateRoute from './routes/PrivateRoute';
 
 
 const App: React.FC = () => {
@@ -18,15 +17,7 @@ const App: React.FC = () => {
                 component={route.component} />
         ) : (null);
     });
-    const unprotectedRoutes = unRoutes.map((route, index) => {
-        return (route.component) ? (
-            <Route
-                key={index}
-                path={route.path}
-                exact={route.exact}
-                component={route.component} />
-        ) : (null);
-    });
+
     const protectedRoutes = pRoutes.map((route, index) => {
         return (route.component) ? (
             <PrivateRoute
@@ -44,7 +35,7 @@ const App: React.FC = () => {
           <div>
               <Suspense fallback={<CustomLoader/>}>
                   <Switch>
-                      {authRoutes.concat(protectedRoutes, unprotectedRoutes)}
+                      {authRoutes.concat(protectedRoutes)}
                   </Switch>
               </Suspense>
           </div>

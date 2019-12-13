@@ -34,7 +34,6 @@ const ProductDetail: React.FC<ProductDetailProps> = ({isOpen, toggleModalFunc, s
                                 top
                                 alt="Product Display"
                             />
-
                         </MDBCol>
                         <MDBCol xs={'12'} sm={'12'} md={'5'}>
                             <div style={{textAlign: 'left'}}>
