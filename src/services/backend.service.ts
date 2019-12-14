@@ -1,7 +1,7 @@
 import Axios, { Method } from 'axios';
 import { StorageService } from './storage.service';
 
-const baseHost = 'http://localhost:3000/';
+const baseHost = process.env.REACT_APP_BASEHOST;
 export const baseUrl = `${baseHost}api/`;
 
 const Backend =  {
