@@ -22,8 +22,6 @@ interface ProductQRCodeProps {
     productPrice: number,
     productLandingPage: string
 }
-
-
 const ProductQRCode: React.FC<ProductQRCodeProps> = ({productPrice, isOpen, toggleModalFunc, productLandingPage, productImage, productDescription}) => {
     return (
         <MDBContainer>
@@ -34,13 +32,12 @@ const ProductQRCode: React.FC<ProductQRCodeProps> = ({productPrice, isOpen, togg
                         <MDBCol xs={'12'} sm={'12'} md={'12'}>
                             <div style={{textAlign: 'center'}}>
                                 <QRCode includeMargin level={'H'} size={300} value={productLandingPage} />
-                                <div>
+                                <div className={'mb-3'}>
                                     <AppButton href={`mailto:?body=Click this link to buy ${productLandingPage}' `} block buttonText={'Email'}/>
                                 </div>
-                                <div className={'copy-container mt-3 mb-3'}>
-                                    <span>{`line://msg/text/${productLandingPage}`}{}</span>
-                                    <AppButton onClick={()=>{}} buttonText={'Copy'}/>
-                                </div>
+                                <div className="line-it-button" data-lang="en" data-type="share-a" data-ver="3"
+                                     data-url={productLandingPage} data-color="default" data-size="large" data-count="true"
+                                     style={{display: 'none'}}/>
 
 
 

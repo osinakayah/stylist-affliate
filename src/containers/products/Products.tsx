@@ -122,6 +122,11 @@ class Products extends PureComponent<IProps, IState> {
                 selectedProductImage: product.productImage,
                 selectedProductLandingPage: product.productLandingPage,
                 selectedProductPrice: product.price,
+            }, () => {
+                setTimeout(()=>{
+                    //@ts-ignore
+                    window.LineIt.loadButton();
+                }, 2000);
             })
         }
 
