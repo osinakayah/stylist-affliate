@@ -8,7 +8,7 @@ interface AppButtonProps {
     outline?: boolean,
     buttonText: string
     block?: boolean,
-    onClick: (event: SyntheticEvent<HTMLButtonElement>) => void;
+    onClick?: (event: SyntheticEvent<HTMLButtonElement>) => void;
     href?: string
 }
 

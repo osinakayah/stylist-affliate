@@ -35,12 +35,13 @@ const ProductQRCode: React.FC<ProductQRCodeProps> = ({productPrice, isOpen, togg
                             <div style={{textAlign: 'center'}}>
                                 <QRCode includeMargin level={'H'} size={300} value={productLandingPage} />
                                 <div>
-                                    <AppButton onClick={()=>{}} block buttonText={'Email'}/>
+                                    <AppButton href={`mailto:?body=Click this link to buy ${productLandingPage}' `} block buttonText={'Email'}/>
                                 </div>
                                 <div className={'copy-container mt-3 mb-3'}>
                                     <span>{`line://msg/text/${productLandingPage}`}{}</span>
                                     <AppButton onClick={()=>{}} buttonText={'Copy'}/>
                                 </div>
+
 
 
                             </div>
