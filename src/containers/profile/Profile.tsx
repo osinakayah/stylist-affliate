@@ -16,6 +16,7 @@ import {
     MDBPageItem,
     MDBPageNav
 } from "mdbreact";
+import Form  from 'react-bootstrap/Form';
 
 
 import AppDrawer from '../../components/commons/AppDrawer';
@@ -23,6 +24,7 @@ import SalesService from "../../services/sales.service";
 import AppButton from "../../components/commons/AppButton";
 import {StorageService} from "../../services/storage.service";
 import { StorageKeys } from "../../services/StorageKeys";
+
 
 interface IProps {
     location: any
@@ -36,6 +38,7 @@ interface IState {
 
     fromDate: Date,
     toDate: Date,
+    searchString:string
 }
 
 class Profile extends PureComponent<IProps, IState> {
@@ -46,6 +49,7 @@ class Profile extends PureComponent<IProps, IState> {
             page: 1,
             sales: [],
             isLoading: false,
+            searchString: '',
 
             fromDate: new Date(),
             toDate: new Date(),
@@ -55,6 +59,15 @@ class Profile extends PureComponent<IProps, IState> {
     componentDidMount(): void {
         this.fetchSales(1)
 
+    }
+    handleChange = (key: string, value: string) => {
+        // @ts-ignore
+        this.setState({[key]: value})
+
+    }
+    searchProducts = (q: string) => {
+        const filter = `filter=product.productName||cont||${q}`
+        this.fetchSales(this.state.page, filter);
     }
     toDateSelected = (date:any) => {
 
@@ -132,12 +145,12 @@ class Profile extends PureComponent<IProps, IState> {
                             /></span>
                         </MDBCol>
                         <MDBCol xs={'12'} sm={'6'} className={'mt-2'}>
-                            <div className="input-group sm-form form-sm form-1 pl-0">
-                                <MDBInput hint="Search" type="text" containerClass="active-pink active-pink-2 mt-0 mb-3" />
-                            </div>
+                            <Form.Group >
+                                <Form.Control onChange={(event: any) => this.handleChange('searchString', event.target.value)} type="text" placeholder="Search" />
+                            </Form.Group>
                         </MDBCol>
                         <MDBCol xs={'12'} sm={'6'} className={'mt-2'}>
-                            <AppButton onClick={()=>{}} buttonText={'Search'}/>
+                            <AppButton onClick={()=>{this.searchProducts(this.state.searchString)}} buttonText={'Search'}/>
                         </MDBCol>
 
 
