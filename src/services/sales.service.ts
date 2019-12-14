@@ -8,7 +8,7 @@ const SalesService = {
         try {
             let endpoint = `${StylistEndpoints.sales}?join=product&page=${page}`
             if (filter) {
-                endpoint = `${StylistEndpoints.sales}?page=${page}&join=product&${filter}`
+                endpoint = `${StylistEndpoints.sales}?page=${page}&join=product&join=user&${filter}`
             }
             const response = await Backend.request(endpoint, 'GET');
             SharedService.logger('get sales', response);

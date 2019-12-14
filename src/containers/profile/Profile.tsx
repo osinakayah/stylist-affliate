@@ -66,13 +66,15 @@ class Profile extends PureComponent<IProps, IState> {
 
     }
     searchProducts = (q: string) => {
-        const filter = `filter=product.productName||cont||${q}`
+        const filter = `filter=product.productName||cont||${q}&or=user.email||cont||${q}`
         this.fetchSales(this.state.page, filter);
     }
     toDateSelected = (date:any) => {
+        this.setState({
+            toDate: date
+        })
 
-
-        const toDate: string = moment(this.state.toDate).format('YYYY-MM-DD HH:mm:ss.SSSSSS');
+        const toDate: string = moment(date).format('YYYY-MM-DD HH:mm:ss.SSSSSS');
         const fromDate: string = moment(this.state.fromDate).format('YYYY-MM-DD HH:mm:ss.SSSSSS');
 
         const filter = `filter=createdAt||gt||${fromDate}&filter=createdAt||lt||${toDate}`
@@ -109,15 +111,6 @@ class Profile extends PureComponent<IProps, IState> {
                     sort: 'desc'
                 },
             ],
-            rows: [
-                {
-                    'id': '1',
-                    'name': 'Braid',
-                    'price': 'Y1,200',
-                    'commission': 'Y200',
-                    'date': 'December 1, 2019',
-                }
-            ]
         };
         return (
             <AppDrawer activeRoute={pathname}>
