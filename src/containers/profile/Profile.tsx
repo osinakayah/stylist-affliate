@@ -66,7 +66,7 @@ class Profile extends PureComponent<IProps, IState> {
     }
     searchProducts = (q: string) => {
         if (q && q.length > 0) {
-            const filter = `filter=product.productName||cont||${q}&or=user.email||cont||${q}&or=source||cont||${q}`
+            const filter = `or=product.productName||cont||${q}&or=user.email||cont||${q}&or=salesSource||cont||${q}`
             this.fetchSales(this.state.page, filter);
         }
 
