@@ -38,7 +38,7 @@ export default class AppDrawer extends PureComponent<IProps, IState > {
             <div>
                 <MDBNavbar color="default-color" dark expand="md">
                     <MDBNavbarBrand>
-                        <strong className="white-text">Stylists</strong>
+                        <strong className="white-text">Affiliate Manager</strong>
                     </MDBNavbarBrand>
                     <MDBNavbarToggler onClick={this.toggleCollapse} />
                     <MDBCollapse id="navbarCollapse3" isOpen={this.state.showNavBar} navbar>
@@ -48,15 +48,6 @@ export default class AppDrawer extends PureComponent<IProps, IState > {
                             </MDBNavItem>
                             <MDBNavItem active={this.props.activeRoute=== '/profile'}>
                                 <MDBNavLink to="/profile">My Page</MDBNavLink>
-                            </MDBNavItem>
-                        </MDBNavbarNav>
-                        <MDBNavbarNav right>
-                            <MDBNavItem>
-                                <MDBFormInline waves>
-                                    <div className="md-form my-0">
-                                        <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
-                                    </div>
-                                </MDBFormInline>
                             </MDBNavItem>
                         </MDBNavbarNav>
                     </MDBCollapse>

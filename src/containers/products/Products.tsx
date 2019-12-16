@@ -126,7 +126,7 @@ class Products extends PureComponent<IProps, IState> {
                 setTimeout(()=>{
                     //@ts-ignore
                     window.LineIt.loadButton();
-                }, 2000);
+                }, 1500);
             })
         }
 
@@ -198,6 +198,7 @@ class Products extends PureComponent<IProps, IState> {
                                                          toggleModalFunc={this.displayCreateProduct}/> : null}
 
                     <ProductDetail
+                        productName={this.state.selectedProductName}
                         productImage={this.state.selectedProductImage}
                         productDescription={this.state.selectedProductDescription}
                         productPrice={this.state.selectedProductPrice}
@@ -205,11 +206,12 @@ class Products extends PureComponent<IProps, IState> {
                         toggleModalFunc={this.displayProductDetails}
                         isOpen={this.state.showProductDetailModal}/>
                     <ProductQRCode
+                        productName={this.state.selectedProductName}
                         productLandingPage={this.urlParameters(this.state.selectedProductLandingPage, this.state.selectedProductID)}
                         productImage={this.state.selectedProductImage}
                         productDescription={this.state.selectedProductDescription}
                         productPrice={this.state.selectedProductPrice}
-
+                        showDetail={this.displayProductDetails}
                         toggleModalFunc={this.displayProductQRCode}
                         isOpen={this.state.showProductDetailQRCode}/>
                     <div className={'products-list-container'}>

@@ -5,7 +5,7 @@ import {
     MDBModalBody,
     MDBModalHeader,
     MDBRow,
-    MDBCol, MDBCardImage,
+    MDBCol,
     MDBModalFooter,
 } from 'mdbreact';
 import QRCode from 'qrcode.react';
@@ -16,44 +16,61 @@ import {baseUrl} from "../../services/backend.service";
 
 interface ProductQRCodeProps {
     isOpen: boolean;
+    productName: string,
     toggleModalFunc: ()=>void,
     productImage: string,
     productDescription: string,
     productPrice: number,
-    productLandingPage: string
+    productLandingPage: string,
+    showDetail: ()=>void,
 }
-const ProductQRCode: React.FC<ProductQRCodeProps> = ({productPrice, isOpen, toggleModalFunc, productLandingPage, productImage, productDescription}) => {
+const ProductQRCode: React.FC<ProductQRCodeProps> = ({showDetail, productName, productPrice, isOpen, toggleModalFunc, productLandingPage, productImage, productDescription}) => {
+
     return (
         <MDBContainer>
             <MDBModal isOpen={isOpen} size={'lg'}>
-                <MDBModalHeader>Product Name</MDBModalHeader>
+                <MDBModalHeader>「こちらのQRコードを読み込んでください」</MDBModalHeader>
                 <MDBModalBody>
                     <MDBRow>
                         <MDBCol xs={'12'} sm={'12'} md={'12'}>
                             <div style={{textAlign: 'center'}}>
                                 <QRCode includeMargin level={'H'} size={300} value={productLandingPage} />
-                                <div className={'mb-3'}>
-                                    <AppButton href={`mailto:?body=Click this link to buy ${productLandingPage}' `} block buttonText={'Email'}/>
-                                </div>
-                                <div className="line-it-button" data-lang="en" data-type="share-a" data-ver="3"
-                                     data-url={productLandingPage} data-color="default" data-size="large" data-count="true"
-                                     style={{display: 'none'}}/>
-
-
-
                             </div>
                         </MDBCol>
                         <MDBCol xs={'12'} sm={'12'} md={'12'}>
-                            <MDBCardImage
-                                cascade
-                                src={baseUrl+"products/image/"+productImage}
-                                top
-                                alt="Product Display"
-                            />
-                            <div style={{textAlign: 'left'}}>{productDescription}</div>
-                            <span className="float-left" style={{lineHeight: '3.7rem'}}>
-                              <strong>Price: <span>&#165;</span> {productPrice}</strong>
-                            </span>
+                            <MDBRow>
+                                <MDBCol>
+                                    <AppButton block href={`mailto:?body=Click this link to buy ${productLandingPage}' `} buttonText={'Email'}/>
+                                </MDBCol>
+                                <MDBCol className={'pt-1'}>
+                                    <div className="line-it-button" data-lang="en" data-type="share-a" data-ver="3"
+                                         data-url={productLandingPage} data-color="default" data-size="large" data-count="true"
+                                         style={{display: 'none'}}/>
+                                </MDBCol>
+                            </MDBRow>
+                        </MDBCol>
+                        <MDBCol xs={'12'} sm={'12'} md={'12'}>
+                            <h6 className={'mt-3'}>QR Code Product Info</h6>
+                            <div style={{display: 'flex', flexDirection: 'row'}}>
+                                <img
+                                    style={{width: '30%', height: 'auto'}}
+                                    src={baseUrl+"products/image/"+productImage}
+                                    alt="product sample"
+                                />
+                                <div style={{display: 'flex', flexDirection: 'column'}}>
+                                    <h6 className={'mt-3 ml-3 text-left'}>{productName}</h6>
+                                    <strong className={'ml-3 text-left'}><span>&#165;</span>{productPrice}</strong>
+                                    <div className={"px-1 mt-3 ml-7"}>
+                                        <span className="float-left">
+                                          <AppButton onClick={(e) => {
+                                              console.log(e);
+                                              e.preventDefault();
+                                              showDetail()
+                                          }} buttonText={'Detail'}/>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                         </MDBCol>
                     </MDBRow>
                 </MDBModalBody>

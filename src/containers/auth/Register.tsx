@@ -50,7 +50,9 @@ export default class Register extends PureComponent<IProps, IState> {
     }
 
     attemptRegister = async () => {
-        const response = await AuthService.registerUser(this.state);
+        const { banks, branches, isLoadingBranch,  ...payload } = this.state;
+
+        const response = await AuthService.registerUser(payload);
         if (response.length > 0){
             toast(response);
         }

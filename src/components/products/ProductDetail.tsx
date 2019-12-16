@@ -16,15 +16,16 @@ interface ProductDetailProps {
     isOpen: boolean;
     toggleModalFunc: ()=>void,
     showQRCode: ()=>void,
+    productName: string,
     productImage: string,
     productDescription: string,
     productPrice: number
 }
-const ProductDetail: React.FC<ProductDetailProps> = ({isOpen, toggleModalFunc, showQRCode, productImage, productDescription, productPrice}) => {
+const ProductDetail: React.FC<ProductDetailProps> = ({productName, isOpen, toggleModalFunc, showQRCode, productImage, productDescription, productPrice}) => {
     return (
         <MDBContainer>
             <MDBModal isOpen={isOpen} size={'lg'}>
-                <MDBModalHeader>Product Name</MDBModalHeader>
+                <MDBModalHeader>{productName}</MDBModalHeader>
                 <MDBModalBody>
                     <MDBRow>
                         <MDBCol xs={'12'} sm={'12'} md={'7'}>
@@ -43,13 +44,19 @@ const ProductDetail: React.FC<ProductDetailProps> = ({isOpen, toggleModalFunc, s
                     </MDBRow>
                     <MDBRow>
                         <MDBCol>
-                            <span className="float-left" style={{lineHeight: '3.7rem'}}>
+                            <p className={'text-center'} style={{lineHeight: '3.7rem'}}>
                               <strong>Price: <span>&#165;</span> {productPrice}</strong>
-                            </span>
-                            <span className="float-right">
-                                <AppButton buttonText={'QR Code'} onClick={showQRCode} />
+                            </p>
+                        </MDBCol>
+
+                    </MDBRow>
+                    <MDBRow>
+                        <MDBCol>
+                            <span>
+                                <AppButton block buttonText={'QR Code'} onClick={showQRCode} />
                             </span>
                         </MDBCol>
+
                     </MDBRow>
                 </MDBModalBody>
                 <MDBModalFooter>
