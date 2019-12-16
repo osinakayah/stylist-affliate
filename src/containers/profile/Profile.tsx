@@ -11,7 +11,6 @@ import {
     MDBTableHead,
     MDBTable,
     MDBContainer,
-    MDBInput,
     MDBPagination,
     MDBPageItem,
     MDBPageNav
@@ -66,8 +65,11 @@ class Profile extends PureComponent<IProps, IState> {
 
     }
     searchProducts = (q: string) => {
-        const filter = `filter=product.productName||cont||${q}&or=user.email||cont||${q}`
-        this.fetchSales(this.state.page, filter);
+        if (q && q.length > 0) {
+            const filter = `filter=product.productName||cont||${q}&or=user.email||cont||${q}&or=source||cont||${q}`
+            this.fetchSales(this.state.page, filter);
+        }
+
     }
     toDateSelected = (date:any) => {
         this.setState({
