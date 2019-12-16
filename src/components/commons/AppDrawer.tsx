@@ -2,8 +2,7 @@ import React, {PureComponent} from 'react';
 import "@material/react-drawer/dist/drawer.css";
 import './styles/AppDrawerStyless.scss'
 import {
-    MDBCollapse,
-    MDBFormInline, MDBNavbar,
+    MDBCollapse, MDBNavbar,
     MDBNavbarBrand,
     MDBNavbarNav,
     MDBNavbarToggler,

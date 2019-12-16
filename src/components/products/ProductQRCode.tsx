@@ -29,7 +29,7 @@ const ProductQRCode: React.FC<ProductQRCodeProps> = ({showDetail, productName, p
     return (
         <MDBContainer>
             <MDBModal isOpen={isOpen} size={'lg'}>
-                <MDBModalHeader>「こちらのQRコードを読み込んでください」</MDBModalHeader>
+                <MDBModalHeader>こちらのQRコードを読み込んでください</MDBModalHeader>
                 <MDBModalBody>
                     <MDBRow>
                         <MDBCol xs={'12'} sm={'12'} md={'12'}>
@@ -43,9 +43,10 @@ const ProductQRCode: React.FC<ProductQRCodeProps> = ({showDetail, productName, p
                                     <AppButton block href={`mailto:?body=Click this link to buy ${productLandingPage}' `} buttonText={'Email'}/>
                                 </MDBCol>
                                 <MDBCol className={'pt-1'}>
-                                    <div className="line-it-button" data-lang="en" data-type="share-a" data-ver="3"
-                                         data-url={productLandingPage} data-color="default" data-size="large" data-count="true"
-                                         style={{display: 'none'}}/>
+                                    <AppButton block href={`link://msg/text/${productLandingPage}`} buttonText={'LINE'}/>
+                                    {/*<div className="line-it-button" data-lang="en" data-type="share-a" data-ver="3"*/}
+                                         {/*data-url={productLandingPage} data-color="default" data-size="large" data-count="false"*/}
+                                         {/*style={{display: 'none'}}/>*/}
                                 </MDBCol>
                             </MDBRow>
                         </MDBCol>
@@ -58,15 +59,11 @@ const ProductQRCode: React.FC<ProductQRCodeProps> = ({showDetail, productName, p
                                     alt="product sample"
                                 />
                                 <div style={{display: 'flex', flexDirection: 'column'}}>
-                                    <h6 className={'mt-3 ml-3 text-left'}>{productName}</h6>
-                                    <strong className={'ml-3 text-left'}><span>&#165;</span>{productPrice}</strong>
+                                    <h6 className={'mt-3 ml-4 text-left'}>{productName}</h6>
+                                    <strong className={'ml-4 text-left'}><span>&#165;</span>{productPrice}</strong>
                                     <div className={"px-1 mt-3 ml-7"}>
-                                        <span className="float-left">
-                                          <AppButton onClick={(e) => {
-                                              console.log(e);
-                                              e.preventDefault();
-                                              showDetail()
-                                          }} buttonText={'Detail'}/>
+                                        <span className="">
+                                          <AppButton onClick={showDetail} buttonText={'Detail'}/>
                                         </span>
                                     </div>
                                 </div>

@@ -110,6 +110,7 @@ class Products extends PureComponent<IProps, IState> {
 
         this.setState({
             showProductDetailModal: !this.state.showProductDetailModal,
+            showProductDetailQRCode: false
         })
     }
     displayProductQRCode = (index: number = -1) => {
@@ -122,17 +123,12 @@ class Products extends PureComponent<IProps, IState> {
                 selectedProductImage: product.productImage,
                 selectedProductLandingPage: product.productLandingPage,
                 selectedProductPrice: product.price,
-            }, () => {
-                setTimeout(()=>{
-                    //@ts-ignore
-                    window.LineIt.loadButton();
-                }, 1500);
             })
         }
 
-
         this.setState({
             showProductDetailQRCode: !this.state.showProductDetailQRCode,
+            showProductDetailModal: false
         })
     }
     displayCreateProduct = () => {
