@@ -115,32 +115,32 @@ export default class Register extends PureComponent<IProps, IState> {
                                 <div className={'form-container'} style={{ backgroundColor: 'white', padding: '7%', display: 'flex', flexDirection: 'column', flexGrow: 3 }}>
 
                                     <MDBIcon className={'iconStyle'} size={'2x'} icon={'lock'}/>
-                                    <h6 className={'text-center'}>Stylist Register</h6>
-                                    <h3 className={'mt-3 text-center'}>Sign Up</h3>
+                                    <h6 className={'text-center'}>スタイリスト登録</h6>
+                                    <h3 className={'mt-3 text-center'}>サインアップ</h3>
                                     <div style={{marginTop: '7%'}}>
                                         <Form className={'mb-3'}>
                                             <Form.Group>
-                                                <Form.Label>Full Name</Form.Label>
-                                                <Form.Control onChange={(event: any) => this.handleChange('fullName', event.target.value)} type="text" placeholder="Enter Full Name" />
+                                                <Form.Label>フルネーム</Form.Label>
+                                                <Form.Control onChange={(event: any) => this.handleChange('fullName', event.target.value)} type="text" placeholder="氏名を入力してください" />
                                             </Form.Group>
 
                                             <Form.Group>
-                                                <Form.Label>Email address</Form.Label>
-                                                <Form.Control onChange={(event: any) => this.handleChange('email', event.target.value)} type="email" placeholder="Enter email" />
+                                                <Form.Label>電子メールアドレス</Form.Label>
+                                                <Form.Control onChange={(event: any) => this.handleChange('email', event.target.value)} type="email" placeholder="メールアドレスを入力して" />
                                             </Form.Group>
                                             <Form.Group >
-                                                <Form.Label>Password</Form.Label>
-                                                <Form.Control onChange={(event: any) => this.handleChange('password', event.target.value)} type="password" placeholder="Password" />
+                                                <Form.Label>パスワード</Form.Label>
+                                                <Form.Control onChange={(event: any) => this.handleChange('password', event.target.value)} type="password" placeholder="パスワード" />
                                             </Form.Group>
                                             <Form.Group>
-                                                <Form.Label>Select Bank</Form.Label>
+                                                <Form.Label>銀行を選択</Form.Label>
                                                 <Form.Control onChange={(event: any) => this.handleChange('bankId', event.target.value)} as="select">
                                                     <option></option>
                                                     {this.renderBankList()}
                                                 </Form.Control>
                                             </Form.Group>
                                             <Form.Group>
-                                                <Form.Label>Select Bank Branch</Form.Label>
+                                                <Form.Label>銀行支店を選択</Form.Label>
                                                 {this.state.isLoadingBranch ? <CustomLoader/>: null}
                                                 <Form.Control onChange={(event: any) => this.handleChange('branchId', event.target.value)} as="select">
                                                     <option></option>
@@ -148,7 +148,7 @@ export default class Register extends PureComponent<IProps, IState> {
                                                 </Form.Control>
                                             </Form.Group>
                                             <Form.Group>
-                                                <Form.Label>Select Account type</Form.Label>
+                                                <Form.Label>アカウントの種類を選択</Form.Label>
 
                                                 <Form.Control onChange={(event: any) => this.handleChange('accountType', event.target.value)} as="select">
                                                     <option></option>
@@ -157,17 +157,17 @@ export default class Register extends PureComponent<IProps, IState> {
                                                 </Form.Control>
                                             </Form.Group>
                                             <Form.Group >
-                                                <Form.Label>Account Name</Form.Label>
-                                                <Form.Control onChange={(event: any) => this.handleChange('accountName', event.target.value)} type="email" placeholder="Enter Account Name" />
+                                                <Form.Label>アカウント名</Form.Label>
+                                                <Form.Control onChange={(event: any) => this.handleChange('accountName', event.target.value)} type="email" placeholder="アカウント名を入力してください" />
                                             </Form.Group>
                                             <Form.Group >
-                                                <Form.Label>Account Number</Form.Label>
-                                                <Form.Control onChange={(event: any) => this.handleChange('accountNumber', event.target.value)} type="email" placeholder="Enter Account Number" />
+                                                <Form.Label>口座番号</Form.Label>
+                                                <Form.Control onChange={(event: any) => this.handleChange('accountNumber', event.target.value)} type="email" placeholder="アカウント番号を入力してください" />
                                             </Form.Group>
-                                            <AppButton onClick={this.attemptRegister} block buttonText={'Sign Up'} />
+                                            <AppButton onClick={this.attemptRegister} block buttonText={'サインアップ'} />
                                         </Form>
 
-                                        <Link to={'/auth/signin'} className={'linkStyle'}>Already have an account? Sign In</Link>
+                                        <Link to={'/auth/signin'} className={'linkStyle'}>すでにアカウントをお持ちですか？サインイン</Link>
                                     </div>
 
                                 </div>

@@ -49,23 +49,23 @@ export default class Login extends PureComponent<IProps, IState> {
                                 <div className={'form-container'}>
 
                                     <MDBIcon className={'iconStyle'} size={'2x'} icon={'lock'}/>
-                                    <h6 className={'text-center'}>Stylist Login</h6>
-                                    <h3 className={'mt-3 text-center'}>Sign In</h3>
+                                    <h6 className={'text-center'}>スタイリストログイン</h6>
+                                    <h3 className={'mt-3 text-center'}>サインイン</h3>
                                     <div style={{marginTop: '7%'}}>
                                         <Form className={'mb-3'}>
 
                                             <Form.Group>
-                                                <Form.Label>Email address</Form.Label>
-                                                <Form.Control onChange={(event: any) => this.handleChange('email', event.target.value)} type="email" placeholder="Enter email" />
+                                                <Form.Label>電子メールアドレス</Form.Label>
+                                                <Form.Control onChange={(event: any) => this.handleChange('email', event.target.value)} type="email" placeholder="メールアドレスを入力して" />
                                             </Form.Group>
                                             <Form.Group >
-                                                <Form.Label>Password</Form.Label>
-                                                <Form.Control onChange={(event: any) => this.handleChange('password', event.target.value)} type="password" placeholder="Password" />
+                                                <Form.Label>パスワード</Form.Label>
+                                                <Form.Control onChange={(event: any) => this.handleChange('password', event.target.value)} type="password" placeholder="パスワード" />
                                             </Form.Group>
-                                            <AppButton onClick={this.attemptLogin} block buttonText={'Sign In'} />
+                                            <AppButton onClick={this.attemptLogin} block buttonText={'サインイン'} />
                                         </Form>
 
-                                        <Link to={'/auth/signup'} className={'linkStyle'}>Don't have an account? Sign Up</Link>
+                                        <Link to={'/auth/signup'} className={'linkStyle'}>アカウントを持っていないのですか？サインアップ</Link>
                                     </div>
 
                                 </div>

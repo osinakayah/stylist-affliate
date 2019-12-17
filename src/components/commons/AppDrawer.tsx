@@ -37,16 +37,16 @@ export default class AppDrawer extends PureComponent<IProps, IState > {
             <div>
                 <MDBNavbar color="default-color" dark expand="md">
                     <MDBNavbarBrand>
-                        <strong className="white-text">Affiliate Manager</strong>
+                        <strong className="white-text">アフィリエイトマネージャー</strong>
                     </MDBNavbarBrand>
                     <MDBNavbarToggler onClick={this.toggleCollapse} />
                     <MDBCollapse id="navbarCollapse3" isOpen={this.state.showNavBar} navbar>
                         <MDBNavbarNav left>
                             <MDBNavItem active={this.props.activeRoute=== '/product'}>
-                                <MDBNavLink to="/product">Products</MDBNavLink>
+                                <MDBNavLink to="/product">製品</MDBNavLink>
                             </MDBNavItem>
                             <MDBNavItem active={this.props.activeRoute=== '/profile'}>
-                                <MDBNavLink to="/profile">My Page</MDBNavLink>
+                                <MDBNavLink to="/profile">マイページ</MDBNavLink>
                             </MDBNavItem>
                         </MDBNavbarNav>
                     </MDBCollapse>

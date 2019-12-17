@@ -30,12 +30,12 @@ const SingleProductList: React.FC<SingleProductGridProps>  = ({index, productNam
                             <span className="float-left">
                               <AppButton outline onClick={() => {
                                   displayProductDetails(index);
-                              }} buttonText={'Detail'}/>
+                              }} buttonText={'詳細'}/>
                             </span>
                             <span className="float-right">
                                 <AppButton onClick={() => {
                                     displayProductQRCode(index);
-                                }} buttonText={'QR Code'}/>
+                                }} buttonText={'QRコード'}/>
                             </span>
                         </div>
                     </div>

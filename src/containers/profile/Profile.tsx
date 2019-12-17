@@ -93,22 +93,22 @@ class Profile extends PureComponent<IProps, IState> {
                     sort: 'asc',
                 },
                 {
-                    label: 'Name',
+                    label: '名',
                     field: 'name',
                     sort: 'asc'
                 },
                 {
-                    label: 'Price',
+                    label: '価格',
                     field: 'price',
                     sort: 'asc'
                 },
                 {
-                    label: 'Commission',
+                    label: '褒賞',
                     field: 'commission',
                     sort: 'asc'
                 },
                 {
-                    label: 'Date',
+                    label: '日付',
                     field: 'date',
                     sort: 'desc'
                 },
@@ -128,24 +128,24 @@ class Profile extends PureComponent<IProps, IState> {
 
                     <MDBRow className={'ml-3'}>
                         <MDBCol xs={'12'} sm={'6'} className={'mt-3'} >
-                            <span> From: <DatePicker
+                            <span> から: <DatePicker
                                 selected={this.state.fromDate}
                                 onChange={(date: Date) => this.setState({fromDate: date})}
                             /></span>
                         </MDBCol>
                         <MDBCol xs={'12'} sm={'6'} className={'mt-3'}>
-                            <span> To: <DatePicker
+                            <span> に: <DatePicker
                                 selected={this.state.toDate}
                                 onChange={this.toDateSelected}
                             /></span>
                         </MDBCol>
                         <MDBCol xs={'12'} sm={'6'} className={'mt-2'}>
                             <Form.Group >
-                                <Form.Control onChange={(event: any) => this.handleChange('searchString', event.target.value)} type="text" placeholder="Search" />
+                                <Form.Control onChange={(event: any) => this.handleChange('searchString', event.target.value)} type="text" placeholder="サーチ" />
                             </Form.Group>
                         </MDBCol>
                         <MDBCol xs={'12'} sm={'6'} className={'mt-2'}>
-                            <AppButton onClick={()=>{this.searchProducts(this.state.searchString)}} buttonText={'Search'}/>
+                            <AppButton onClick={()=>{this.searchProducts(this.state.searchString)}} buttonText={'サーチ'}/>
                         </MDBCol>
 
 

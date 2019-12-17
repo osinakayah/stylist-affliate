@@ -45,7 +45,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({productName, isOpen, toggl
                     <MDBRow>
                         <MDBCol>
                             <p className={'text-center'} style={{lineHeight: '3.7rem'}}>
-                              <strong>Price: <span>&#165;</span> {productPrice}</strong>
+                              <strong>価格: <span>&#165;</span> {productPrice}</strong>
                             </p>
                         </MDBCol>
 
@@ -53,14 +53,14 @@ const ProductDetail: React.FC<ProductDetailProps> = ({productName, isOpen, toggl
                     <MDBRow>
                         <MDBCol>
                             <span>
-                                <AppButton block buttonText={'QR Code'} onClick={showQRCode} />
+                                <AppButton block buttonText={'QRコード'} onClick={showQRCode} />
                             </span>
                         </MDBCol>
 
                     </MDBRow>
                 </MDBModalBody>
                 <MDBModalFooter>
-                    <AppButton buttonText={'Close'} outline onClick={toggleModalFunc} />
+                    <AppButton buttonText={'閉じる'} outline onClick={toggleModalFunc} />
                 </MDBModalFooter>
             </MDBModal>
         </MDBContainer>
