@@ -1,8 +1,12 @@
 import React, {PureComponent} from 'react';
 import "@material/react-drawer/dist/drawer.css";
 import './styles/AppDrawerStyless.scss'
+import DrawerSideContent from './DrawerSideContent'
+import TopAppBar, {TopAppBarFixedAdjust} from '@material/react-top-app-bar';
+import Drawer, {DrawerAppContent, DrawerContent, DrawerHeader, DrawerTitle} from '@material/react-drawer';
+import MaterialIcon from '@material/react-material-icon';
 import {
-    MDBCollapse, MDBNavbar,
+    MDBBtn, MDBIcon,
     MDBNavbarBrand,
     MDBNavbarNav,
     MDBNavbarToggler,
@@ -27,31 +31,29 @@ export default class AppDrawer extends PureComponent<IProps, IState > {
             showNavBar: false
         }
     }
-    toggleCollapse = () => {
-        this.setState({ showNavBar: !this.state.showNavBar });
-    }
 
 
     render() {
         return (
             <div>
-                <MDBNavbar color="default-color" dark expand="md">
-                    <MDBNavbarBrand>
-                        <strong className="white-text">アフィリエイトマネージャー</strong>
-                    </MDBNavbarBrand>
-                    <MDBNavbarToggler onClick={this.toggleCollapse} />
-                    <MDBCollapse id="navbarCollapse3" isOpen={this.state.showNavBar} navbar>
-                        <MDBNavbarNav left>
-                            <MDBNavItem active={this.props.activeRoute=== '/product'}>
-                                <MDBNavLink to="/product">製品</MDBNavLink>
-                            </MDBNavItem>
-                            <MDBNavItem active={this.props.activeRoute=== '/profile'}>
-                                <MDBNavLink to="/profile">マイページ</MDBNavLink>
-                            </MDBNavItem>
-                        </MDBNavbarNav>
-                    </MDBCollapse>
-                </MDBNavbar>
-                {this.props.children}
+                <Drawer
+                    modal
+                    open={this.state.showNavBar}
+                    onClose={() => this.setState({showNavBar: false})}
+                >
+                    <DrawerSideContent activeRoute={''}/>
+                </Drawer>
+                <div>
+                    <div style={{backgroundColor: '#2bbbad'}}>
+                        <span>
+                            <MDBBtn onClick={() => this.setState({showNavBar: !this.state.showNavBar})} style={{backgroundColor: '#2bbbad'}} size={'sm'}>
+                                <MDBIcon icon="bars" />
+                            </MDBBtn>
+                        </span>
+                        <span style={{color: 'white'}}>アフィリエイトマネージャー</span>
+                    </div>
+                    {this.props.children}
+                </div>
             </div>
         );
     }

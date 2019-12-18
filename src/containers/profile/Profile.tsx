@@ -76,10 +76,10 @@ class Profile extends PureComponent<IProps, IState> {
             toDate: date
         })
 
-        const toDate: string = moment(date).format('YYYY-MM-DD HH:mm:ss.SSSSSS');
-        const fromDate: string = moment(this.state.fromDate).format('YYYY-MM-DD HH:mm:ss.SSSSSS');
+        const toDate: string = moment(date).format('YYYY-MM-DD');
+        const fromDate: string = moment(this.state.fromDate).format('YYYY-MM-DD');
 
-        const filter = `filter=createdAt||gt||${fromDate}&filter=createdAt||lt||${toDate}`
+        const filter = `filter=createdAt||gte||${fromDate}&filter=createdAt||lte||${toDate}`
 
         this.fetchSales(this.state.page, filter);
     }
@@ -178,8 +178,8 @@ class Profile extends PureComponent<IProps, IState> {
                     id: datum.id,
                     'name': datum.product.productName,
                     'price': datum.price,
-                    'commission': (datum.price * 0.3),
-                    'date': datum.updatedAt,
+                    'commission': (datum.price * 0.03),
+                    'date': datum.createdAt,
                 };
             });
             this.setState({sales, pageCount, page})

@@ -160,7 +160,7 @@ class Products extends PureComponent<IProps, IState> {
         if (this.state.isAdmin) {
             return (
                 <MDBRow>
-                    <AppButton onClick={this.displayCreateProduct} buttonText={'Create Product'}/>
+                    <AppButton onClick={this.displayCreateProduct} buttonText={'製品を作成する'}/>
                 </MDBRow>
             )
         }

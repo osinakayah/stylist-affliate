@@ -56,38 +56,38 @@ class CreateProduct extends PureComponent<CreateProductProps, CreateProductState
         return (
             <MDBContainer>
                 <MDBModal isOpen={this.props.isOpen} size={'lg'}>
-                    <MDBModalHeader>New Product</MDBModalHeader>
+                    <MDBModalHeader>新製品</MDBModalHeader>
                     <MDBModalBody>
                         <MDBRow>
                             <MDBCol xs={'12'} sm={'12'} md={'12'}>
                                 <Form className={'mb-3'}>
                                     <Form.Group>
-                                        <Form.Label>Product Name</Form.Label>
-                                        <Form.Control onChange={(event: any) => this.handleChange('productName', event.target.value)} type="text" placeholder="Enter Product name" />
+                                        <Form.Label>商品名</Form.Label>
+                                        <Form.Control onChange={(event: any) => this.handleChange('productName', event.target.value)} type="text" placeholder="製品名を入力してください" />
                                     </Form.Group>
                                     <Form.Group>
-                                        <Form.Label>Product Description</Form.Label>
+                                        <Form.Label>製品説明</Form.Label>
                                         <Form.Control onChange={(event: any) => this.handleChange('description', event.target.value)} as="textarea" rows="3" />
                                     </Form.Group>
                                     <Form.Group>
-                                        <input onChange={(event: any) => this.handleChange('file', event.target.files[0])} type={'file'} placeholder={'Select Image'} />
+                                        <input onChange={(event: any) => this.handleChange('file', event.target.files[0])} type={'file'} placeholder={'画像を選択'} />
                                     </Form.Group>
                                     <Form.Group >
-                                        <Form.Label>Product Landing page</Form.Label>
-                                        <Form.Control onChange={(event: any) => this.handleChange('productLandingPage', event.target.value)} type="text" placeholder="Enter Product Landing page" />
+                                        <Form.Label>製品のランディングページ</Form.Label>
+                                        <Form.Control onChange={(event: any) => this.handleChange('productLandingPage', event.target.value)} type="text" placeholder="製品のランディングページに入る" />
                                     </Form.Group>
                                     <Form.Group >
-                                        <Form.Label>Product Price</Form.Label>
-                                        <Form.Control onChange={(event: any) => this.handleChange('price', event.target.value)} type="text" placeholder="Enter Product Price" />
+                                        <Form.Label>製品価格</Form.Label>
+                                        <Form.Control onChange={(event: any) => this.handleChange('price', event.target.value)} type="text" placeholder="製品価格を入力してください" />
                                     </Form.Group>
-                                    <AppButton onClick={this.attemptCreateProduct} block buttonText={'Create Product'} />
+                                    <AppButton onClick={this.attemptCreateProduct} block buttonText={'製品を作成する'} />
                                 </Form>
                             </MDBCol>
 
                         </MDBRow>
                     </MDBModalBody>
                     <MDBModalFooter>
-                        <AppButton buttonText={'Close'} outline onClick={this.props.toggleModalFunc} />
+                        <AppButton buttonText={'閉じる'} outline onClick={this.props.toggleModalFunc} />
                     </MDBModalFooter>
                 </MDBModal>
                 <ToastContainer />

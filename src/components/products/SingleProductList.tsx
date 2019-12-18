@@ -24,7 +24,7 @@ const SingleProductList: React.FC<SingleProductGridProps>  = ({index, productNam
                     />
                     <div style={{display: 'flex', flexDirection: 'column'}}>
                         <h6 className={'mt-3 ml-3 text-left'}>{productName}</h6>
-                        <strong className={'ml-3 text-left'}><span>&#165;</span>{productPrice} <span>&#165;</span>({productPrice*0.3})</strong>
+                        <strong className={'ml-3 text-left'}><span>&#165;</span>{productPrice} <span>&#165;</span>({productPrice*0.03})</strong>
 
                         <div className={"px-1 mt-3 ml-7"}>
                             <span className="float-left">

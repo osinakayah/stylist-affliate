@@ -57,12 +57,11 @@ export default class Register extends PureComponent<IProps, IState> {
             toast(response);
         }
         else {
-            this.gotoProductsList()
+            this.gotoLoginScreen()
         }
     }
-    gotoProductsList = () => {
-
-        this.props.history.push('/product')
+    gotoLoginScreen = () => {
+        this.props.history.push('/auth/signin')
     }
     handleChange = (key: string, value: string) => {
         // @ts-ignore
