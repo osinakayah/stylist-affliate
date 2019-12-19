@@ -17,7 +17,8 @@ import {StorageKeys} from "../../services/StorageKeys";
 import {baseUrl} from "../../services/backend.service";
 
 interface IProps {
-    location: any
+    location: any;
+    history: any;
 }
 
 interface IState {
@@ -182,15 +183,19 @@ class Products extends PureComponent<IProps, IState> {
         }
         return `${productLandingPage}${url}`
     }
+    signOut = () => {
+            StorageService.removeToken()
+        this.props.history.push('/auth/signin')
+    }
 
     render(): React.ReactNode {
 
         const {pathname} = this.props.location;
 
         return (
-            <AppDrawer activeRoute={pathname}>
+            <AppDrawer signOut={this.signOut} activeRoute={pathname}>
                 <MDBContainer fluid>
-                    {this.state.isAdmin ? <CreateProduct isOpen={this.state.showCreateProductModal}
+                    {this.state.isAdmin ? <CreateProduct refresh={this.fetchProducts} isOpen={this.state.showCreateProductModal}
                                                          toggleModalFunc={this.displayCreateProduct}/> : null}
 
                     <ProductDetail

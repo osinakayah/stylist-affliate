@@ -9,6 +9,7 @@ import {
 
 interface IProps {
     activeRoute: string
+    signOut: () => void
 }
 
 interface IState {
@@ -25,7 +26,6 @@ export default class AppDrawer extends PureComponent<IProps, IState > {
         }
     }
 
-
     render() {
         return (
             <div >
@@ -35,7 +35,7 @@ export default class AppDrawer extends PureComponent<IProps, IState > {
                     open={this.state.showNavBar}
                     onClose={() => this.setState({showNavBar: false})}
                 >
-                    <DrawerSideContent activeRoute={''}/>
+                    <DrawerSideContent activeRoute={this.props.activeRoute}/>
                 </Drawer>
                 <div>
                     <div style={{backgroundColor: '#2bbbad'}}>
@@ -45,6 +45,11 @@ export default class AppDrawer extends PureComponent<IProps, IState > {
                             </MDBBtn>
                         </span>
                         <span style={{color: 'white'}}>商品一覧</span>
+                        <span className={'float-right'}>
+                            <MDBBtn onClick={this.props.signOut} style={{backgroundColor: '#2bbbad'}} size={'sm'}>
+                                <MDBIcon  icon="sign-out-alt" />
+                            </MDBBtn>
+                        </span>
                     </div>
                     {this.props.children}
                 </div>

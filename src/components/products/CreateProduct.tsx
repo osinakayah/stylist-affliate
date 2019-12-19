@@ -22,7 +22,8 @@ import ProductService from '../../services/product.service'
 
 interface CreateProductProps {
     isOpen: boolean;
-    toggleModalFunc: ()=>void
+    toggleModalFunc: ()=>void,
+    refresh: (page: number)=>void
 }
 
 interface CreateProductState {
@@ -30,26 +31,46 @@ interface CreateProductState {
     productName: string,
     description: string,
     productLandingPage: string,
-    price: string
+    price: number
 }
 
 
 class CreateProduct extends PureComponent<CreateProductProps, CreateProductState>{
+    constructor(props: CreateProductProps){
+        super(props);
+        this.state = {
+            file: null,
+            productName: '',
+            description: '',
+            productLandingPage: '',
+            price: 0
+        }
+    }
     handleChange = (key: string, value: string) => {
         // @ts-ignore
         this.setState({[key]: value})
     }
     attemptCreateProduct =async () => {
-        const formData: FormData = new FormData()
-        formData.append('productName', this.state.productName)
-        formData.append('description', this.state.description)
-        formData.append('file', this.state.file)
-        formData.append('productLandingPage', this.state.productLandingPage)
-        formData.append('price', this.state.price);
 
-        this.props.toggleModalFunc();
-        const responseData = await ProductService.createProduct(formData)
-        toast(responseData);
+        if (this.state && this.state.file) {
+            const formData: FormData = new FormData()
+            formData.append('productName', this.state.productName)
+            formData.append('description', this.state.description)
+            formData.append('file', this.state.file)
+            formData.append('productLandingPage', this.state.productLandingPage)
+            formData.append('price', this.state.price.toString());
+
+
+
+            this.props.toggleModalFunc();
+            const responseData = await ProductService.createProduct(formData)
+            toast(responseData);
+            this.props.refresh(1);
+        }
+        else {
+            toast("Please upload file");
+        }
+
 
     }
     render(): React.ReactNode {
@@ -78,7 +99,7 @@ class CreateProduct extends PureComponent<CreateProductProps, CreateProductState
                                     </Form.Group>
                                     <Form.Group >
                                         <Form.Label>製品価格</Form.Label>
-                                        <Form.Control onChange={(event: any) => this.handleChange('price', event.target.value)} type="text" placeholder="製品価格を入力してください" />
+                                        <Form.Control onChange={(event: any) => this.handleChange('price', event.target.value)} type="number" placeholder="製品価格を入力してください" />
                                     </Form.Group>
                                     <AppButton onClick={this.attemptCreateProduct} block buttonText={'登録'} />
                                 </Form>

@@ -22,7 +22,7 @@ const ProductService = {
 
     getProducts: async (page: number) => {
         try {
-            const response = await Backend.request(`${StylistEndpoints.products}?page=${page}`, 'get');
+            const response = await Backend.request(`${StylistEndpoints.products}?page=${page}&sort=id,DESC`, 'get');
             SharedService.logger('get products', response);
             if (response.status >= 200 && response.status < 300) {
                 return response.data;

@@ -26,7 +26,8 @@ import { StorageKeys } from "../../services/StorageKeys";
 
 
 interface IProps {
-    location: any
+    location: any;
+    history: any;
 }
 
 interface IState {
@@ -83,6 +84,10 @@ class Profile extends PureComponent<IProps, IState> {
 
         this.fetchSales(this.state.page, filter);
     }
+    signOut = () => {
+        StorageService.removeToken()
+        this.props.history.push('/auth/signin')
+    }
     render(): React.ReactNode {
         const {pathname} = this.props.location;
         const data_people = {
@@ -115,7 +120,7 @@ class Profile extends PureComponent<IProps, IState> {
             ],
         };
         return (
-            <AppDrawer activeRoute={pathname}>
+            <AppDrawer activeRoute={pathname} signOut={this.signOut}>
                 <MDBContainer style={{backgroundColor: '#fff'}}>
                     <MDBRow>
                         <MDBCol className={'offset-md-5  offset-lg-5 offset-sm-1 mb-lg-0 mb-5 text-center'}  xs={'12'} lg="2" md="2" >

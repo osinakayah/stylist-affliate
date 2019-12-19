@@ -9,8 +9,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Form  from 'react-bootstrap/Form';
 import {Link} from "react-router-dom";
-
-import CustomLoader from '../../components/commons/CustomLoader'
 import AppButton from "../../components/commons/AppButton";
 import './styles/LoginStyles.scss'
 import { AuthService } from "../../services/auth.service";
@@ -24,84 +22,26 @@ interface IState {
     fullName: string,
     email: string,
     password: string,
-    bankId: number,
-    branchId: number,
-    accountType: number,
-    accountNumber: string,
-    accountName: string,
-    branches: any[],
-    banks: any[]
-    isLoadingBranch: boolean
 }
 
 export default class Register extends PureComponent<IProps, IState> {
 
-    constructor(props: IProps) {
-        super(props);
-        // @ts-ignore
-        this.state = {
-            branches: [],
-            banks: [],
-            isLoadingBranch: false
-        }
-    }
-    componentDidMount(): void {
-        this.fetchBank();
-    }
 
     attemptRegister = async () => {
-        const { banks, branches, isLoadingBranch,  ...payload } = this.state;
 
-        const response = await AuthService.registerUser(payload);
+
+        const response = await AuthService.registerUser(this.state);
         if (response.length > 0){
             toast(response);
         }
         else {
-            this.gotoLoginScreen()
+            toast('登録成功、メールを確認してください');
         }
     }
-    gotoLoginScreen = () => {
-        this.props.history.push('/auth/signin')
-    }
+
     handleChange = (key: string, value: string) => {
         // @ts-ignore
         this.setState({[key]: value})
-
-        if (key === 'bankId'){
-            this.fetchBranchesForBank(value)
-        }
-
-
-
-    }
-    renderBankList = () => {
-
-        return this.state.banks.map((bank) => {
-            return <option key={bank.code} value={bank.code}>{bank.name}</option>
-        });
-    }
-    fetchBank = async () => {
-        const response = await AuthService.getBanks();
-        this.setState({
-            banks: response,
-        })
-    }
-
-
-
-    fetchBranchesForBank = async (bankID: string) => {
-        this.setState({isLoadingBranch: true})
-        const response = await AuthService.getBankBranches(bankID);
-        this.setState({
-            branches: response,
-            isLoadingBranch: false
-        })
-
-    }
-    renderBranches = () => {
-        return this.state.branches.map((singleBranch, index) => {
-            return <option key={index} value={singleBranch.code}>{singleBranch.name}</option>
-        });
     }
 
     render(): React.ReactNode {
@@ -130,38 +70,6 @@ export default class Register extends PureComponent<IProps, IState> {
                                             <Form.Group >
                                                 <Form.Label>パスワード</Form.Label>
                                                 <Form.Control onChange={(event: any) => this.handleChange('password', event.target.value)} type="password" placeholder="パスワード" />
-                                            </Form.Group>
-                                            <Form.Group>
-                                                <Form.Label>銀行を選択</Form.Label>
-                                                <Form.Control onChange={(event: any) => this.handleChange('bankId', event.target.value)} as="select">
-                                                    <option></option>
-                                                    {this.renderBankList()}
-                                                </Form.Control>
-                                            </Form.Group>
-                                            <Form.Group>
-                                                <Form.Label>銀行支店を選択</Form.Label>
-                                                {this.state.isLoadingBranch ? <CustomLoader/>: null}
-                                                <Form.Control onChange={(event: any) => this.handleChange('branchId', event.target.value)} as="select">
-                                                    <option></option>
-                                                    {this.renderBranches()}
-                                                </Form.Control>
-                                            </Form.Group>
-                                            <Form.Group>
-                                                <Form.Label>アカウントの種類を選択</Form.Label>
-
-                                                <Form.Control onChange={(event: any) => this.handleChange('accountType', event.target.value)} as="select">
-                                                    <option></option>
-                                                    <option value={1}>普通</option>
-                                                    <option value={2}>当座</option>
-                                                </Form.Control>
-                                            </Form.Group>
-                                            <Form.Group >
-                                                <Form.Label>アカウント名</Form.Label>
-                                                <Form.Control onChange={(event: any) => this.handleChange('accountName', event.target.value)} type="email" placeholder="アカウント名を入力してください" />
-                                            </Form.Group>
-                                            <Form.Group >
-                                                <Form.Label>口座番号</Form.Label>
-                                                <Form.Control onChange={(event: any) => this.handleChange('accountNumber', event.target.value)} type="email" placeholder="アカウント番号を入力してください" />
                                             </Form.Group>
                                             <AppButton onClick={this.attemptRegister} block buttonText={'サインアップ'} />
                                         </Form>

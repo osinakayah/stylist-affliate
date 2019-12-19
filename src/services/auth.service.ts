@@ -45,7 +45,7 @@ export const AuthService = {
             if (response.status === 200) {
                 return response.data;
             }
-            return null;
+            return [];
         } catch (error) {
             SharedService.logger('getBank error', error.response);
             return handleError(error.response);
@@ -64,6 +64,20 @@ export const AuthService = {
             return handleError(error.response);
         }
     },
+
+    completeAccount: async  (body: any) => {
+        try {
+            const response = await Backend.request(StylistEndpoints.activate, 'POST', body);
+            SharedService.logger('user activate', response);
+            if (response.status >= 200 && response.status < 300) {
+                return ''
+            }
+            return handleError(response);
+        } catch (error) {
+            SharedService.logger('activate user', error.response);
+            return handleError(error.response);
+        }
+    }
 };
 
 const handleError = (res: any) => {
