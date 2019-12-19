@@ -43,7 +43,7 @@ const ProductQRCode: React.FC<ProductQRCodeProps> = ({showDetail, productName, p
                                     <AppButton block href={`mailto:?body=Click this link to buy ${productLandingPage}&source=Email' `} buttonText={'Eメール'}/>
                                 </MDBCol>
                                 <MDBCol className={'pt-1'}>
-                                    <AppButton block href={`link://msg/text/${productLandingPage}&source=LINE`} buttonText={'ライン'}/>
+                                    <AppButton block href={`link://msg/text/${productLandingPage}&source=LINE`} buttonText={'LINE'}/>
                                 </MDBCol>
                             </MDBRow>
                         </MDBCol>

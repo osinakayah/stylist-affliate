@@ -2,16 +2,9 @@ import React, {PureComponent} from 'react';
 import "@material/react-drawer/dist/drawer.css";
 import './styles/AppDrawerStyless.scss'
 import DrawerSideContent from './DrawerSideContent'
-import TopAppBar, {TopAppBarFixedAdjust} from '@material/react-top-app-bar';
-import Drawer, {DrawerAppContent, DrawerContent, DrawerHeader, DrawerTitle} from '@material/react-drawer';
-import MaterialIcon from '@material/react-material-icon';
+import Drawer from '@material/react-drawer';
 import {
     MDBBtn, MDBIcon,
-    MDBNavbarBrand,
-    MDBNavbarNav,
-    MDBNavbarToggler,
-    MDBNavItem,
-    MDBNavLink
 } from "mdbreact";
 
 interface IProps {
@@ -35,8 +28,9 @@ export default class AppDrawer extends PureComponent<IProps, IState > {
 
     render() {
         return (
-            <div>
+            <div >
                 <Drawer
+                    style={{backgroundColor: '#161616'}}
                     modal
                     open={this.state.showNavBar}
                     onClose={() => this.setState({showNavBar: false})}
@@ -50,7 +44,7 @@ export default class AppDrawer extends PureComponent<IProps, IState > {
                                 <MDBIcon icon="bars" />
                             </MDBBtn>
                         </span>
-                        <span style={{color: 'white'}}>アフィリエイトマネージャー</span>
+                        <span style={{color: 'white'}}>商品一覧</span>
                     </div>
                     {this.props.children}
                 </div>

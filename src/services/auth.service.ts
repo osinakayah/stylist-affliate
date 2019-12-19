@@ -68,6 +68,9 @@ export const AuthService = {
 
 const handleError = (res: any) => {
     try {
+        if (res.data.message) {
+            return res.data.message;
+        }
         const errorsKeys = Object.keys(res.data.message[0].constraints);
         return (res.data.message[0].constraints[errorsKeys[0]]);
     } catch (error) {

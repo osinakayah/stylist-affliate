@@ -3,6 +3,8 @@ import Avatar from 'react-avatar';
 
 import './styles/DrawerSideContentStyles.scss'
 import {Link} from "react-router-dom";
+import {StorageService} from "../../services/storage.service";
+import {StorageKeys} from "../../services/StorageKeys";
 
 interface DrawerSideContentProps {
     activeRoute: string,
@@ -13,7 +15,7 @@ const DrawerSideContent: React.FC<DrawerSideContentProps> = ({activeRoute}) => {
     return (
         <div className={'side-drawer-container'}>
             <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '30px'}}>
-                <Avatar style={{marginTop: '12em'}} round name="John Doe" />
+                <Avatar style={{marginTop: '12em'}} round name={StorageService.getData(StorageKeys.fullName) ? StorageService.getData(StorageKeys.fullName): ''} />
             </div>
 
             <ul className={'side-menu-list'}>

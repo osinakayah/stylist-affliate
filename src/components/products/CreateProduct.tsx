@@ -56,7 +56,7 @@ class CreateProduct extends PureComponent<CreateProductProps, CreateProductState
         return (
             <MDBContainer>
                 <MDBModal isOpen={this.props.isOpen} size={'lg'}>
-                    <MDBModalHeader>新製品</MDBModalHeader>
+                    <MDBModalHeader>商品登録</MDBModalHeader>
                     <MDBModalBody>
                         <MDBRow>
                             <MDBCol xs={'12'} sm={'12'} md={'12'}>
@@ -74,13 +74,13 @@ class CreateProduct extends PureComponent<CreateProductProps, CreateProductState
                                     </Form.Group>
                                     <Form.Group >
                                         <Form.Label>製品のランディングページ</Form.Label>
-                                        <Form.Control onChange={(event: any) => this.handleChange('productLandingPage', event.target.value)} type="text" placeholder="製品のランディングページに入る" />
+                                        <Form.Control onChange={(event: any) => this.handleChange('productLandingPage', event.target.value)} type="text" placeholder="http://" />
                                     </Form.Group>
                                     <Form.Group >
                                         <Form.Label>製品価格</Form.Label>
                                         <Form.Control onChange={(event: any) => this.handleChange('price', event.target.value)} type="text" placeholder="製品価格を入力してください" />
                                     </Form.Group>
-                                    <AppButton onClick={this.attemptCreateProduct} block buttonText={'製品を作成する'} />
+                                    <AppButton onClick={this.attemptCreateProduct} block buttonText={'登録'} />
                                 </Form>
                             </MDBCol>
 
